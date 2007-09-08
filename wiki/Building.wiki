@@ -51,12 +51,17 @@ $ popd
 $ ./fill-llvm-gcc.sh
 }}}
 
+ * Find the location of your system C++ include headers, and put that path in `$CXXHEADERPATH`.
+{{{
+$ CXXHEADERPATH=/usr/include/c++/4.*.*
+}}}
+
  * Prepare to install LLVM-GCC. Make sure that `$LLVMOBJDIR` and `$HEAVENLY` are set per the instructions above.
 {{{
 $ mkdir llvm-gcc-iphone-build
 $ pushd llvm-gcc-iphone-build
 $ EXTRALANGS=,objc,obj-c++
-$ TARGETOPTIONS=--with-gxx-include-dir=/usr/include/c++/4.0.0 --target=arm-apple-darwin \
+$ TARGETOPTIONS=--with-gxx-include-dir=$CXXHEADERPATH --target=arm-apple-darwin \
 --enable-sjlj-exceptions --with-heavenly=$HEAVENLY --with-as=/usr/local/bin/arm-apple-darwin-as \
 --with-ld=/usr/local/bin/arm-apple-darwin-ld
 $ BUILDOPTIONS=LLVM_VERSION_INFO=2.0-svn-iphone-dev-0.3-svn
