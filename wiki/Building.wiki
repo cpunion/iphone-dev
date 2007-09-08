@@ -46,6 +46,11 @@ $ sudo make install
 $ popd
 }}}
 
+ * Fill your installation of LLVM-GCC. Make sure that your Internet connection is up, and execute:
+{{{
+$ ./fill-llvm-gcc.sh
+}}}
+
  * Prepare to install LLVM-GCC. Make sure that `$LLVMOBJDIR` and `$HEAVENLY` are set per the instructions above.
 {{{
 $ mkdir llvm-gcc-iphone-build
@@ -62,6 +67,7 @@ $ BUILDOPTIONS=LLVM_VERSION_INFO=2.0-svn-iphone-dev-0.3-svn
 $ ../llvm-gcc-iphone/configure --enable-llvm=$LLVMOBJDIR --enable-languages=c,c++$EXTRALANGS $TARGETOPTIONS
 $ make $BUILDOPTIONS
 $ sudo make install
+$ popd
 }}}
 
  * Build libstdcxx.
