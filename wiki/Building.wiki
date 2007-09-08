@@ -2,7 +2,10 @@
 
 =HOWTO=
 
-{{{
+* Check out the current source from SVN.
+* {{{
 $ cd odcctools
-$ ./configure --target=arm-apple-darwin --program-prefix=arm-apple-darwin-
+$ ./configure --target=arm-apple-darwin --disable-ld64
+$ make
+$ sudo make install
 }}}
