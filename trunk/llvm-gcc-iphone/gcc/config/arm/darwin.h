@@ -254,7 +254,9 @@ Boston, MA 02111-1307, USA.  */
 /* APPLE LOCAL begin dynamic-no-pic */
 /* Darwin switches.  */
 /* Use dynamic-no-pic codegen (no picbase reg; not suitable for shlibs.)  */
+#ifndef MASK_MACHO_DYNAMIC_NO_PIC
 #define MASK_MACHO_DYNAMIC_NO_PIC (0x00800000)
+#endif
 
 #define TARGET_DYNAMIC_NO_PIC	(target_flags & MASK_MACHO_DYNAMIC_NO_PIC)
 /* APPLE LOCAL end dynamic-no-pic */
@@ -282,13 +284,20 @@ Boston, MA 02111-1307, USA.  */
     }							\
   while (0)
 /* APPLE LOCAL begin mainline */
-/* Removed ASM_OUTPUT_COMMON and ASM_OUTPUT_LOCAL */
+
+#define ASM_OUTPUT_COMMON(FILE, NAME, SIZE, ROUNDED)  \
+( fputs (".comm ", (FILE)),         \
+  assemble_name ((FILE), (NAME)),       \
+  /* APPLE LOCAL begin mainline */         \
+  fprintf ((FILE), ","HOST_WIDE_INT_PRINT_UNSIGNED"\n", (ROUNDED)))
+  /* APPLE LOCAL end mainline */
+
 /* APPLE LOCAL end mainline */
 
 /* APPLE LOCAL begin Macintosh alignment 2002-2-19 --ff */
 #define MASK_ALIGN_NATURAL	0x40000000
 #define TARGET_ALIGN_NATURAL	(target_flags & MASK_ALIGN_NATURAL)
-#define rs6000_alignment_flags target_flags
+#define darwin_alignment_flags target_flags
 #define MASK_ALIGN_MAC68K	0x20000000
 #define TARGET_ALIGN_MAC68K	(target_flags & MASK_ALIGN_MAC68K)
 
