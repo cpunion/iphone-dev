@@ -2,19 +2,65 @@
 
 =HOWTO=
 
-* Check out the current source from SVN.
+ * Get a copy of the iPhone root filesystem, unpack it somewhere, and set the environment variable `$HEAVENLY` to its path.
+
 {{{
-$ cd odcctools
+$ export HEAVENLY=/path/to/filesystem
+}}}
+
+ * Check out a copy of LLVM _SVN_.
+{{{
+$ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm-svn
+$ pushd llvm-svn
+$ ./configure --enable-optimized
+$ make ENABLE_OPTIMIZED=1
+$ sudo make install
+$ export LLVMOBJDIR=`pwd`
+$ popd
+}}}
+
+ * Check out a copy of the iphone-dev SVN repository.
+{{{
+$ svn checkout http://iphone-dev.googlecode.com/svn/trunk/ iphone-dev
+$ pushd iphone-dev
+}}}
+
+ * Make a directory to hold the toolchain.
+{{{
+$ sudo mkdir /usr/local/arm-apple-darwin
+}}}
+
+ * Build odcctools.
+{{{
+$ pushd odcctools
 $ ./configure --target=arm-apple-darwin --disable-ld64
 $ make
 $ sudo make install
-
-$ cd ../csu
-$ sudo mkdir -p /usr/local/arm-apple-darwin/lib
-$ sudo cp crt1.o bundle1.o dylib1.o $HEAVENLY/usr/lib/libc.dylib /usr/local/arm-apple-darwin/lib/
-
-$ cd ..
-$ TARGETOPTIONS="--with-gxx-include-dir=/usr/include/c++/4.0.0 --build=$TRIPLE --host=$TRIPLE
---target=arm-apple-darwin --enable-sjlj-exceptions --with-ld=/usr/local/bin/arm-apple-darwin-ld
---with-as=/usr/local/bin/arm-apple-darwin-as --with-heavenly=$HEAVENLY"
+$ popd
 }}}
+
+ * Install csu, which includes `crt1.o`, `dylib1.o`, and `bundle1.o`. Don't rebuild them from source, as this requires a working cross-GCC, which you don't have yet (and the build-from-source process is broken right now anyway). Binaries are provided for this reason.
+{{{
+$ pushd csu
+$ ./configure --target=arm-apple-darwin --prefix=/usr/local/arm-apple-darwin
+$ sudo make install
+$ popd
+}}}
+
+ * Prepare to install LLVM-GCC. Make sure that `$LLVMOBJDIR` and `$HEAVENLY` are set per the instructions above.
+{{{
+$ mkdir llvm-gcc-iphone-build
+$ pushd llvm-gcc-iphone-build
+$ EXTRALANGS=,objc,obj-c++
+$ TARGETOPTIONS=--with-gxx-include-dir=/usr/include/c++/4.0.0 --target=arm-apple-darwin --enable-sjlj-exceptions --with-heavenly=$HEAVENLY --with-as=/usr/local/bin/arm-apple-darwin-as --with-ld=/usr/local/bin/arm-apple-darwin-ld
+$ BUILDOPTIONS=LLVM_VERSION_INFO=2.0-svn-iphone-dev-0.3-svn
+}}}
+
+ * Configure and make LLVM-GCC.
+{{{
+$ ../llvm-gcc-iphone/configure --enable-llvm=$LLVMOBJDIR --enable-languages=c,c++$EXTRALANGS $TARGETOPTIONS
+$ make $BUILDOPTIONS
+$ sudo make install
+}}}
+
+ * Build libstdcxx.
