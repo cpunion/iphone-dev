@@ -31,16 +31,17 @@ else
 fi
 
 echo "Finding files in LLVM-GCC..."
-find llvm-gcc-4.2 -not -path "*.svn*" -and -not -name llvm-gcc-4.2 -and -not \
-    -path "*/libstdc++-v3/*" -and -not -name libstdc++-v3 -print > \
-    llvm-gcc-4.2-files.tmp
-
-echo "Mangling names..."
-sed -E -i '' -e s!^[^/]+/!! llvm-gcc-4.2-files.tmp
+pushd llvm-gcc-4.2
+find * -not -path "*.svn*" -and -not -name llvm-gcc-4.2 -and -not -path \
+    "libstdc++-v3/*" -and -not -name libstdc++-v3 -print > \
+    ../llvm-gcc-4.2-files.tmp
+popd
 
 echo "Copying files..."
-for f in `cat llvm-gcc-4.2-files.tmp`
+for full_f in `cat llvm-gcc-4.2-files.tmp`
 do
+    first_slash=`expr index "$full_f" /`
+    
     if test -e "llvm-gcc-iphone/$f"
     then
         echo "Skipping $f"
