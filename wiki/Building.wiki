@@ -3,7 +3,7 @@
 =HOWTO=
 
 * Check out the current source from SVN.
-* {{{
+{{{
 $ cd odcctools
 $ ./configure --target=arm-apple-darwin --disable-ld64
 $ make
