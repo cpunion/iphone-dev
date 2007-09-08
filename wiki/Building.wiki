@@ -7,7 +7,7 @@
 $ export HEAVENLY=/path/to/filesystem
 }}}
 
- * Check out a copy of LLVM _SVN_.
+ * Check out a copy of LLVM _SVN_, and build a _release_ build (as opposed to a debug one).
 {{{
 $ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm-svn
 $ pushd llvm-svn
