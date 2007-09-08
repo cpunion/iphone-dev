@@ -1,0 +1,8 @@
+#summary How to build the toolchain.
+
+=HOWTO=
+
+{{{
+$ cd odcctools
+$ ./configure --target=arm-apple-darwin --program-prefix=arm-apple-darwin-
+}}}
