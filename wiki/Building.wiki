@@ -8,4 +8,11 @@ $ cd odcctools
 $ ./configure --target=arm-apple-darwin --disable-ld64
 $ make
 $ sudo make install
+
+$ cd ../csu
+$ sudo mkdir -p /usr/local/arm-apple-darwin/lib
+$ sudo cp crt1.o bundle1.o dylib1.o $HEAVENLY/usr/lib/libc.dylib /usr/local/arm-apple-darwin/lib/
+
+$ cd ..
+$ TARGETOPTIONS="--with-gxx-include-dir=/usr/include/c++/4.0.0 --build=$TRIPLE --host=$TRIPLE --target=arm-apple-darwin --enable-sjlj-exceptions --with-ld=/usr/local/bin/arm-apple-darwin-ld --with-as=/usr/local/bin/arm-apple-darwin-as --with-heavenly=$HEAVENLY"
 }}}
