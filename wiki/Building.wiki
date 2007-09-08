@@ -3,7 +3,6 @@
 =HOWTO=
 
  * Get a copy of the iPhone root filesystem, unpack it somewhere, and set the environment variable `$HEAVENLY` to its path.
-
 {{{
 $ export HEAVENLY=/path/to/filesystem
 }}}
