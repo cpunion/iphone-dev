@@ -1,6 +1,6 @@
 #summary How to build the toolchain.
 
-=HOWTO=
+=HOWTO build the toolchain=
 
  * Get a copy of the iPhone root filesystem, unpack it somewhere, and set the environment variable `$HEAVENLY` to its path.
 {{{
@@ -105,3 +105,25 @@ $ popd
 }}}
 
  * You're done. Have fun!
+
+=HOWTO obtain the Mac OS X headers on Linux=
+
+ * Install the `pax` utility using your distribution's standard package management system.
+ * Download the Xcode DMG from [http://developer.apple.com/tools/download/ Apple's Developer Tools download page]. It is free, but you will need to register with them. It is also huge (~924 MB).
+ * Mount the resulting DMG. Note that you will need HFS+ support in your kernel for this to succeed.
+{{{
+mkdir xcode
+sudo mount xcode_2.4.1_8m1910_6936315.dmg ./xcode -t hfs -o loop
+}}}
+ * Extract the `pax` archive inside the Mac OS X 10.4 SDK package.
+{{{
+mkdir MacOSX10.4-Universal-SDK
+pushd MacOSX10.4-Universal-SDK
+gunzip -c "../xcode/Packages/MacOSX10.4.Universal.pkg/Contents/Archive.pax.gz" | pax -r
+popd
+}}}
+ * Unmount the DMG.
+{{{
+sudo umount ./xcode
+}}}
+ * The header files should now live in `MacOSX10.4-Universal-SDK` in the current directory. You can get rid of the Xcode DMG now.
