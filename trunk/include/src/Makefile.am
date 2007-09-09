@@ -8,5 +8,6 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-include_HEADERS=_types.h errno.h pthread.h pthread_impl.h signal.h time.h
+include_HEADERS=_types.h errno.h pthread.h pthread_impl.h signal.h stdlib.h \
+    string.h time.h
 
