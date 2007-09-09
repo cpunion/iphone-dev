@@ -84,4 +84,23 @@ $ sudo make install
 $ popd
 }}}
 
- * Build libstdcxx.
+ * Download a copy of libstdcxx from [http://www.opensource.apple.com/darwinsource/]. Unpack it, and create a virtual GCC environment for it to build in.
+{{{
+$ pushd libstdcxx-11
+$ mkdir libstdcxx-build
+$ pushd libstdcxx-build
+$ mkdir gcc
+$ ln -s /usr/local/arm-apple-darwin/bin/xgcc ./gcc/xgcc
+$ ln -s /usr/local/arm-apple-darwin/bin/g++ ./gcc/g++
+}}}
+
+ * Now build libstdcxx.
+{{{
+$ ../libstdcxx/configure --host=arm-apple-darwin --target=arm-apple-darwin --enable-sjlj-exceptions
+$ make
+$ sudo make install
+$ popd
+$ popd
+}}}
+
+ * You're done. Have fun!
