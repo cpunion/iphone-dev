@@ -38,6 +38,15 @@ $ sudo make install
 $ popd
 }}}
 
+ * Install the iPhone headers to the appropriate place.
+{{{
+$ pushd include
+$ ./configure --host=arm-apple-darwin --prefix=/usr/local/arm-apple-darwin
+$ make
+$ sudo make install
+$ popd
+}}}
+
  * Install csu, which includes `crt1.o`, `dylib1.o`, and `bundle1.o`. Don't rebuild them from source, as this requires a working cross-GCC, which you don't have yet (and the build-from-source process is broken right now anyway). Binaries are provided for this reason.
 {{{
 $ pushd csu
