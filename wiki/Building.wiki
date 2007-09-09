@@ -91,13 +91,13 @@ $ pushd libstdcxx-11
 $ mkdir libstdcxx-build
 $ pushd libstdcxx-build
 $ mkdir gcc
-$ ln -s /usr/local/arm-apple-darwin/bin/xgcc ./gcc/xgcc
-$ ln -s /usr/local/arm-apple-darwin/bin/g++ ./gcc/g++
+$ ln -s /usr/local/bin/arm-apple-darwin-gcc ./gcc/xgcc
+$ ln -s /usr/local/bin/arm-apple-darwin-g++ ./gcc/g++
 }}}
 
  * Now build libstdcxx.
 {{{
-$ ../libstdcxx/configure --host=arm-apple-darwin --target=arm-apple-darwin --enable-sjlj-exceptions
+$ ../libstdcxx/configure --target=arm-apple-darwin --enable-sjlj-exceptions
 $ make
 $ sudo make install
 $ popd
