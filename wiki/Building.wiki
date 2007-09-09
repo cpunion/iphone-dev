@@ -82,6 +82,7 @@ $ ../llvm-gcc-iphone/configure --enable-llvm=$LLVMOBJDIR --enable-languages=c,c+
 $ make $BUILDOPTIONS
 $ sudo make install
 $ popd
+$ popd
 }}}
 
  * Download a copy of libstdcxx from [http://www.opensource.apple.com/darwinsource/]. Unpack it, and create a virtual GCC environment for it to build in.
