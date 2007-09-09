@@ -108,18 +108,14 @@ $ popd
 
 =HOWTO obtain the Mac OS X headers on Linux or Windows=
 
- * Install the `pax` utility using your distribution's standard package management system.
+ * Install the `cpio` utility using your distribution's standard package management system. All the major Linux distributions, as well as Cygwin, should have this utility.
  * Download the Xcode DMG from [http://developer.apple.com/tools/download/ Apple's Developer Tools download page]. It is free, but you will need to register with them. It is also huge (~924 MB).
- * Extract `Packages/MacOSX10.4.Universal.pkg` from the Xcode DMG. Do not use the Linux kernel's HFS+ loopback mount: it does not support the format used by this DMG, and your files will be corrupted. One program that is known to work is [http://www.poweriso.com/ PowerISO], although it isn't free.
+ * Extract the `Packages/MacOSX10.4.Universal.pkg` directory from the Xcode DMG. Do not use the Linux kernel's HFS+ loopback mount: it does not support the format used by this DMG, and your files will be corrupted. One program that is known to work is [http://www.poweriso.com/ PowerISO], although it isn't free.
  * Extract the `pax` archive inside the Mac OS X 10.4 SDK package.
 {{{
 mkdir MacOSX10.4-Universal-SDK
 pushd MacOSX10.4-Universal-SDK
-gunzip -c ../MacOSX10.4.Universal.pkg/Contents/Archive.pax.gz | pax -r
+gunzip -c ../MacOSX10.4.Universal.pkg/Contents/Archive.pax.gz | cpio -i
 popd
 }}}
- * Unmount the DMG.
-{{{
-sudo umount ./xcode
-}}}
- * The header files should now live in `MacOSX10.4-Universal-SDK` in the current directory. You can get rid of the Xcode DMG now.
+ * The header files should now live in `MacOSX10.4-Universal-SDK` in the current directory. You can get rid of the Xcode DMG and the package directory now.
