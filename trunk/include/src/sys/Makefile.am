@@ -1,2 +1,4 @@
-include_HEADERS=errno.h _types.h
+sys_HEADERS=errno.h _types.h
+
+sysdir=$(includedir)/sys
 
