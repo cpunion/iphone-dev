@@ -1674,7 +1674,7 @@ am__tar='${AMTAR} chof - "$$tardir"'; am__untar='${AMTAR} xf -'
 
 
 
-                                                            ac_config_files="$ac_config_files Makefile README doc/Makefile m4/Makefile src/Makefile src/sys/Makefile"
+                                                                                ac_config_files="$ac_config_files Makefile README doc/Makefile m4/Makefile src/Makefile src/arm/Makefile src/machine/Makefile src/sys/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -2207,6 +2207,8 @@ do
   "doc/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
   "m4/Makefile" ) CONFIG_FILES="$CONFIG_FILES m4/Makefile" ;;
   "src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
+  "src/arm/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/arm/Makefile" ;;
+  "src/machine/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/machine/Makefile" ;;
   "src/sys/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/sys/Makefile" ;;
   "config.h" ) CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
