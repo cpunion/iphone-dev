@@ -134,7 +134,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 EXTRA_DIST = reconf configure
-SUBDIRS = m4 src doc src/sys
+SUBDIRS = m4 src doc src/arm src/machine src/sys
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 

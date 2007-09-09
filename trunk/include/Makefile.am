@@ -9,5 +9,5 @@
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 EXTRA_DIST = reconf configure
-SUBDIRS = m4 src doc src/sys
+SUBDIRS = m4 src doc src/arm src/machine src/sys
 
