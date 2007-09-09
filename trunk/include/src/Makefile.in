@@ -122,7 +122,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-include_HEADERS = errno.h pthread.h pthread_impl.h
+include_HEADERS = errno.h pthread.h pthread_impl.h _types.h
 all: all-am
 
 .SUFFIXES:

@@ -1,2 +1,2 @@
-include_HEADERS=errno.h
+include_HEADERS=errno.h _types.h
 
