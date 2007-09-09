@@ -285,7 +285,7 @@ do {					\
 
 #undef	CPP_SPEC
 #define CPP_SPEC "%{static:%{!dynamic:-D__STATIC__}}%{!static:-D__DYNAMIC__}" \
-	" %{pthread:-D_REENTRANT}"
+	" %{pthread:-D_REENTRANT} -idirafter /usr/include"
 
 /* APPLE LOCAL begin private extern  */
 #undef CC1PLUS_SPEC
