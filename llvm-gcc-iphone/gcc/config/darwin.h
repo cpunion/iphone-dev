@@ -281,11 +281,14 @@ do {					\
    them to darwin_cpp_builtins in darwin-c.c.  */
 
 /* iphone-dev local: finally, search /usr/include: this allows very clean
- * installations */
+ * installations
+ * This breaks things though, especially on Linux. */
 
 #undef	CPP_SPEC
 #define CPP_SPEC "%{static:%{!dynamic:-D__STATIC__}}%{!static:-D__DYNAMIC__}" \
-	" %{pthread:-D_REENTRANT} -idirafter /usr/include"
+	" %{pthread:-D_REENTRANT}"
+
+/* -idirafter /usr/include" */
 
 /* APPLE LOCAL begin private extern  */
 #undef CC1PLUS_SPEC
