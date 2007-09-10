@@ -1,7 +1,6 @@
 AC_PREREQ(2.59)
 
 AC_INIT([iphone-dev-include], [0.30], [pcwalton@uchicago.edu])
-AM_INIT_AUTOMAKE([1.9])
 
 AC_PREFIX_DEFAULT(/usr/local/arm-apple-darwin)
 
