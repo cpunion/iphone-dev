@@ -1,7 +1,14 @@
 #!/bin/bash
 MACOSX_SDK_FRAMEWORKS="ApplicationServices/CoreGraphics CoreAudio \
-    CoreFoundation Foundation"
-prefix=@prefix@
+    CoreFoundation Foundation CoreServices/CarbonCore"
+LOCAL_FRAMEWORKS="Celestial CoreSurface GraphicsServices LayerKit UIKit \
+    vmutils" 
+
+prefix="@prefix@"
+INSTALL="@INSTALL@"
+
+# The $header_dirs variable is an interleaved list of BASE dirs, MOD dirs, and
+# INSTALL dirs.
 
 # Build up the framework header directories.
 echo "Finding framework header directories..."
@@ -10,22 +17,102 @@ do
     header_dir="@SDK_LOCATION@/System/Library/Frameworks/${fw//\//.framework/Frameworks/}.framework/Headers"
     bare_fw_name=`basename $fw`
 
-    header_base_dirs="$header_base_dirs$header_dir "
-    header_mod_dirs="$header_mod_dirs./include/$bare_fw_name "
-    header_install_dirs="$header_install_dirs@includedir@/$bare_fw_name "
+    header_dirs="$header_dirs$header_dir "
+    header_dirs="$header_dirs./include/$bare_fw_name "
+    header_dirs="$header_dirs@includedir@/$bare_fw_name "
 done
 
 # Build up the base header directories.
 echo "Finding base header directories..."
-for dirp in `find @SDK_LOCATION@/usr/include/* -type d -print`
+for dirp in `find @SDK_LOCATION@/usr/include -type d -print`
 do
     dir=${dirp##@SDK_LOCATION@/usr/include/}
-    header_base_dirs="$header_base_dirs@SDK_LOCATION@/usr/include/$dir "
-    header_mod_dirs="$header_mod_dirs./include/$dir "
-    header_install_dirs="$header_install_dirs@includedir@/$dir "
+    if test $dir = @SDK_LOCATION@/usr/include
+    then
+        dir='.'
+    fi
+
+    header_dirs="$header_dirs@SDK_LOCATION@/usr/include/$dir "
+    header_dirs="$header_dirs./include/$dir "
+    header_dirs="$header_dirs@includedir@/$dir "
 done
 
-echo "header_base_dirs = $header_base_dirs"
-echo "header_mod_dirs = $header_mod_dirs"
-echo "header_install_dirs = $header_install_dirs"
+# Function to determine whether a framework is local.
+is_framework_local() {
+    for fw in $LOCAL_FRAMEWORKS
+    do
+        if test $1 = $fw
+        then
+            return 0
+        fi
+    done
+    return 1
+}
+
+echo "Installing header files..."
+
+next_kind=header_base_dir
+for dir in $header_dirs
+do
+    case $next_kind in
+        header_base_dir)
+            header_base_dir=$dir
+            next_kind=header_mod_dir
+            ;;
+        header_mod_dir)
+            header_mod_dir=$dir
+            next_kind=header_install_dir
+            ;;
+        header_install_dir)
+            header_install_dir=$dir
+            next_kind=header_base_dir
+            ;;
+    esac
+
+    if test $next_kind = header_base_dir
+    then
+        if test ! -e $header_install_dir
+        then
+            echo "Making directory $header_install_dir"
+            mkdir -p $header_install_dir
+        fi
+
+        echo "Entering directory $header_base_dir"
+        for hp in `find $header_base_dir -maxdepth 1 -type f`
+        do
+            h=`basename $hp`
+            if test -e $header_mod_dir/$h
+            then
+                echo "Skipping $h because local version exists"
+            else
+                echo "Installing $h"
+                @INSTALL_DATA@ $header_base_dir/$h $header_install_dir/$h
+            fi
+
+            if test -e $header_mod_dir/$h.diff
+            then
+                echo "Applying local patch to $h"
+                patch $header_install_dir/$h $header_mod_dir/$h.diff
+            fi 
+        done
+    fi
+done
+
+echo "Installing local header files..."
+for hp in `find include -type f -name \*.h -print`
+do
+    hd=`dirname ${hp##include/}`
+    hn=`basename $hp`
+
+    if test ! -e @includedir@/$hd
+    then
+        echo "Making directory @includedir@/$hd"
+        mkdir -p @includedir@/$hd
+    fi
+
+    echo "Installing $hd/$hn"
+    @INSTALL_DATA@ $hp @includedir@/$hd/$hn
+done
+
+echo "All done!"
 

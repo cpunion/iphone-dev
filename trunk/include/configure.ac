@@ -4,6 +4,8 @@ AC_INIT([iphone-dev-include], [0.30], [pcwalton@uchicago.edu])
 
 AC_PREFIX_DEFAULT(/usr/local/arm-apple-darwin)
 
+AC_PROG_INSTALL
+
 AC_ARG_WITH(macosx-sdk,
     AC_HELP_STRING([--with-macosx-sdk=path],
         [specify location to Mac OS X 10.4u SDK]),
