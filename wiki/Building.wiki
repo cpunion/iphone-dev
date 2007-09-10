@@ -44,8 +44,7 @@ $ HEAVENLY=/path/to/filesystem
 {{{
 $ pushd include
 $ ./configure --with-macosx-sdk=/Developer/SDKs/MacOSX10.4u.sdk
-$ make
-$ sudo make install
+$ ./install-headers.sh
 $ popd
 }}}
 
