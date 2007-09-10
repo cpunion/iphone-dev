@@ -1,0 +1,11 @@
+--- /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/fp.h	2006-09-11 23:05:25.000000000 -0500
++++ ./fp.h	2007-07-23 18:16:20.000000000 -0500
+@@ -1321,7 +1321,7 @@
+ *   dec2l       Similar to dec2num except a long is returned.                   *
+ *                                                                               *
+ ********************************************************************************/
+-#if TARGET_CPU_PPC || TARGET_CPU_X86
++#if TARGET_CPU_PPC || TARGET_CPU_X86 || TARGET_CPU_ARM
+     #define SIGDIGLEN      36  
+ #elif TARGET_CPU_68K
+     #define SIGDIGLEN      20
