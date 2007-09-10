@@ -4,11 +4,6 @@ _Do not follow these instructions yet if you are a casual user of the toolchain!
 
 =HOWTO build the toolchain=
 
- * Get a copy of the iPhone root filesystem, unpack it somewhere, and set the environment variable `$HEAVENLY` to its path.
-{{{
-$ export HEAVENLY=/path/to/filesystem
-}}}
-
  * Check out a copy of LLVM _SVN_, and build a _release_ build (as opposed to a debug one).
 {{{
 $ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm-svn
@@ -40,6 +35,11 @@ $ sudo make install
 $ popd
 }}}
 
+ * Get a copy of the iPhone root filesystem, unpack it somewhere, and set the environment variable `$HEAVENLY` to its path.
+{{{
+$ HEAVENLY=/path/to/filesystem
+}}}
+
  * Install the iPhone headers to the appropriate place. If you aren't on Mac OS X, replace the `/Developer/SDKs/MacOSX10.4u.sdk` path with the full path to the unpacked Mac OS X 10.4 Universal SDK. If you don't have a copy of this, see below.
 {{{
 $ pushd include
@@ -62,19 +62,14 @@ $ popd
 $ ./fill-llvm-gcc.sh
 }}}
 
- * Find the location of your system C++ include headers, and put that path in `$CXXHEADERPATH`.
-{{{
-$ CXXHEADERPATH=/usr/include/c++/4.*.*
-}}}
-
  * Prepare to install LLVM-GCC. Make sure that `$LLVMOBJDIR` and `$HEAVENLY` are set per the instructions above.
 {{{
 $ mkdir llvm-gcc-iphone-build
 $ pushd llvm-gcc-iphone-build
 $ EXTRALANGS=,objc,obj-c++
-$ TARGETOPTIONS="--with-gxx-include-dir=$CXXHEADERPATH --target=arm-apple-darwin \
---enable-sjlj-exceptions --with-heavenly=$HEAVENLY --with-as=/usr/local/bin/arm-apple-darwin-as \
---with-ld=/usr/local/bin/arm-apple-darwin-ld"
+$ TARGETOPTIONS="--with-gxx-include-dir=/usr/local/arm-apple-darwin/include/c++/4.0.0 \
+--target=arm-apple-darwin --enable-sjlj-exceptions --with-heavenly=$HEAVENLY \
+--with-as=/usr/local/bin/arm-apple-darwin-as --with-ld=/usr/local/bin/arm-apple-darwin-ld"
 $ BUILDOPTIONS=LLVM_VERSION_INFO=2.0-svn-iphone-dev-0.3-svn
 }}}
 
