@@ -66,29 +66,9 @@ $ ./fill-llvm-gcc.sh
 $ mkdir llvm-gcc-iphone-build
 $ pushd llvm-gcc-iphone-build
 $ ../llvm-gcc-iphone/configure --enable-llvm=$LLVMOBJDIR --enable-languages=c,c++,objc,obj-c++ \
---with-gxx-include-dir=/usr/local/arm-apple-darwin/include/c++/4.0.0 --target=arm-apple-darwin \
---enable-sjlj-exceptions --with-heavenly=$HEAVENLY --with-as=/usr/local/bin/arm-apple-darwin-as \
---with-ld=/usr/local/bin/arm-apple-darwin-ld
+--target=arm-apple-darwin --enable-sjlj-exceptions --with-heavenly=$HEAVENLY \
+--with-as=/usr/local/bin/arm-apple-darwin-as --with-ld=/usr/local/bin/arm-apple-darwin-ld
 $ make LLVM_VERSION_INFO=2.0-svn-iphone-dev-0.3-svn 
-$ sudo make install
-$ popd
-$ popd
-}}}
-
- * Download a copy of libstdcxx from [http://www.opensource.apple.com/darwinsource/]. Unpack it, and create a virtual GCC environment for it to build in.
-{{{
-$ pushd libstdcxx-11
-$ mkdir libstdcxx-build
-$ pushd libstdcxx-build
-$ mkdir gcc
-$ ln -s /usr/local/bin/arm-apple-darwin-gcc ./gcc/xgcc
-$ ln -s /usr/local/bin/arm-apple-darwin-g++ ./gcc/g++
-}}}
-
- * Now build libstdcxx.
-{{{
-$ ../libstdcxx/configure --target=arm-apple-darwin --enable-sjlj-exceptions
-$ make
 $ sudo make install
 $ popd
 $ popd
