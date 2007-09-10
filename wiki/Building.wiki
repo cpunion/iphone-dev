@@ -40,10 +40,10 @@ $ sudo make install
 $ popd
 }}}
 
- * Install the iPhone headers to the appropriate place.
+ * Install the iPhone headers to the appropriate place. If you aren't on Mac OS X, replace the `/Developer/SDKs/MacOSX10.4u.sdk` line with the full path to the unpacked Mac OS X 10.4 Universal SDK. If you need a copy of this, see below.
 {{{
 $ pushd include
-$ ./configure --host=arm-apple-darwin --prefix=/usr/local/arm-apple-darwin
+$ ./configure --with-macosx-sdk=/Developer/SDKs/MacOSX10.4u.sdk
 $ make
 $ sudo make install
 $ popd
