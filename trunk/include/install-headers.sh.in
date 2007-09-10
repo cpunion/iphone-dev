@@ -84,22 +84,31 @@ do
         fi
 
         echo "Entering directory $header_base_dir"
-        for hp in `find $header_base_dir -maxdepth 1 -type f`
+        for hp in `find $header_base_dir/ -maxdepth 1 \( -type f -or -type l \
+            \) -not -type d`
         do
             h=`basename $hp`
-            if test -e $header_mod_dir/$h
-            then
-                echo "Skipping $h because local version exists"
-            else
-                echo "Installing $h"
-                @INSTALL_DATA@ $header_base_dir/$h $header_install_dir/$h
-            fi
 
-            if test -e $header_mod_dir/$h.diff
-            then
-                echo "Applying local patch to $h"
-                patch $header_install_dir/$h $header_mod_dir/$h.diff
-            fi 
+            if test ! -L $header_base_dir/$h
+            then 
+                if test -e $header_mod_dir/$h
+                then
+                    echo "Skipping $h because local version exists"
+                else
+                    echo "Installing $h"
+                    @INSTALL_DATA@ $header_base_dir/$h $header_install_dir/$h
+                fi
+
+                if test -e $header_mod_dir/$h.diff
+                then
+                    echo "Applying local patch to $h"
+                    patch $header_install_dir/$h $header_mod_dir/$h.diff
+                fi
+            else 
+                targ=`readlink $header_base_dir/$h`
+                echo "Symlinking $h to $targ"
+                ln -s $targ $header_install_dir/$h
+            fi
         done
     fi
 done
