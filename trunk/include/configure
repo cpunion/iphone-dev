@@ -1369,9 +1369,9 @@ echo "${ECHO_T}$ac_cv_file__Developer_SDKs_MacOSX10_4u_sdk" >&6
 if test $ac_cv_file__Developer_SDKs_MacOSX10_4u_sdk = yes; then
   SDK_LOCATION=/Developer/SDKs/MacOSX10.4u.sdk
 else
-  { { echo "$as_me:$LINENO: error: \"You must have a copy of the Mac OS X 10.4 Universal SDK. Please see the wiki at http://iphone-dev.googlecode.com/ for information on how to obtain this. If you already have the SDK" >&5
-echo "$as_me: error: \"You must have a copy of the Mac OS X 10.4 Universal SDK. Please see the wiki at http://iphone-dev.googlecode.com/ for information on how to obtain this. If you already have the SDK" >&2;}
-   { (exit use a --with-macosx-sdk=path option to specify the path."); exit use a --with-macosx-sdk=path option to specify the path."; }; }
+  { { echo "$as_me:$LINENO: error: You must have a copy of the Mac OS X 10.4 Universal SDK. Please see the wiki at http://iphone-dev.googlecode.com/ for information on how to obtain this. If you already have the SDK use a --with-macosx-sdk=path option to specify the path." >&5
+echo "$as_me: error: You must have a copy of the Mac OS X 10.4 Universal SDK. Please see the wiki at http://iphone-dev.googlecode.com/ for information on how to obtain this. If you already have the SDK use a --with-macosx-sdk=path option to specify the path." >&2;}
+   { (exit 1); exit 1; }; }
 fi
 
 fi;
