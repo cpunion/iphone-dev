@@ -1,5 +1,7 @@
 #summary How to build the toolchain.
 
+_Do not follow these instructions yet if you are a casual user of the toolchain! Use version 0.20 of the toolchain instead. These instructions are a work in progress and are intended for toolchain developers._
+
 =HOWTO build the toolchain=
 
  * Get a copy of the iPhone root filesystem, unpack it somewhere, and set the environment variable `$HEAVENLY` to its path.
