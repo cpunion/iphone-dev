@@ -32,8 +32,10 @@ fi
 
 echo "Finding files in LLVM-GCC..."
 pushd llvm-gcc-4.2
-find * -not -path "*.svn*" -and -not -name llvm-gcc-4.2 -and -not -path \
-    "libstdc++-v3/*" -and -not -name libstdc++-v3 -print > \
+#find * -not -path "*.svn*" -and -not -name llvm-gcc-4.2 -and -not -path \
+#    "libstdc++-v3/*" -and -not -name libstdc++-v3 -print > \
+#    ../llvm-gcc-4.2-files.tmp
+find * -not -path "*.svn*" -not -name llvm-gcc-4.2 -print > \
     ../llvm-gcc-4.2-files.tmp
 popd
 
