@@ -7,6 +7,12 @@ LOCAL_FRAMEWORKS="Celestial CoreSurface GraphicsServices LayerKit UIKit \
 prefix="@prefix@"
 INSTALL="@INSTALL@"
 
+if test ! -e @includedir@
+then
+    echo "Making directory @includedir@"
+    mkdir -p @includedir@
+fi
+
 # The $header_dirs variable is an interleaved list of BASE dirs, MOD dirs, and
 # INSTALL dirs.
 
