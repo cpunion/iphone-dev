@@ -108,4 +108,4 @@ pushd MacOSX10.4-Universal-SDK
 gunzip -c ../MacOSX10.4.Universal.pkg/Contents/Archive.pax.gz | cpio -i
 popd
 }}}
- * The SDK files should now live in `MacOSX10.4-Universal-SDK` in the current directory. You'll pass the path to this directory to the configure script in the `include` directory. Feel free to get rid of the Xcode DMG and the package directory now.
+ * The SDK files should now live in `MacOSX10.4-Universal-SDK/Developer/SDKs/MacOSX10.4u.sdk` in the current directory. You'll pass the path to this directory to the configure script in the `include` directory. Feel free to get rid of the Xcode DMG and the package directory now.
