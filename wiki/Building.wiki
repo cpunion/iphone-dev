@@ -61,21 +61,15 @@ $ popd
 $ ./fill-llvm-gcc.sh
 }}}
 
- * Prepare to install LLVM-GCC. Make sure that `$LLVMOBJDIR` and `$HEAVENLY` are set per the instructions above.
+ * Configure and make LLVM-GCC. Make sure that `$LLVMOBJDIR` and `$HEAVENLY` are set per the instructions above.
 {{{
 $ mkdir llvm-gcc-iphone-build
 $ pushd llvm-gcc-iphone-build
-$ EXTRALANGS=,objc,obj-c++
-$ TARGETOPTIONS="--with-gxx-include-dir=/usr/local/arm-apple-darwin/include/c++/4.0.0 \
---target=arm-apple-darwin --enable-sjlj-exceptions --with-heavenly=$HEAVENLY \
---with-as=/usr/local/bin/arm-apple-darwin-as --with-ld=/usr/local/bin/arm-apple-darwin-ld"
-$ BUILDOPTIONS=LLVM_VERSION_INFO=2.0-svn-iphone-dev-0.3-svn
-}}}
-
- * Configure and make LLVM-GCC.
-{{{
-$ ../llvm-gcc-iphone/configure --enable-llvm=$LLVMOBJDIR --enable-languages=c,c++$EXTRALANGS $TARGETOPTIONS
-$ make $BUILDOPTIONS
+$ ../llvm-gcc-iphone/configure --enable-llvm=$LLVMOBJDIR --enable-languages=c,c++,objc,obj-c++ \
+--with-gxx-include-dir=/usr/local/arm-apple-darwin/include/c++/4.0.0 --target=arm-apple-darwin \
+--enable-sjlj-exceptions --with-heavenly=$HEAVENLY --with-as=/usr/local/bin/arm-apple-darwin-as \
+--with-ld=/usr/local/bin/arm-apple-darwin-ld
+$ make LLVM_VERSION_INFO=2.0-svn-iphone-dev-0.3-svn 
 $ sudo make install
 $ popd
 $ popd
