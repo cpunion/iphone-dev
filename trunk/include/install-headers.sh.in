@@ -1,3 +1,31 @@
 #!/bin/bash
+MACOSX_SDK_FRAMEWORKS="ApplicationServices/CoreGraphics CoreAudio \
+    CoreFoundation Foundation"
+prefix=@prefix@
 
+# Build up the framework header directories.
+echo "Finding framework header directories..."
+for fw in $MACOSX_SDK_FRAMEWORKS
+do
+    header_dir="@SDK_LOCATION@/System/Library/Frameworks/${fw//\//.framework/Frameworks/}.framework/Headers"
+    bare_fw_name=`basename $fw`
+
+    header_base_dirs="$header_base_dirs$header_dir "
+    header_mod_dirs="$header_mod_dirs./include/$bare_fw_name "
+    header_install_dirs="$header_install_dirs@includedir@/$bare_fw_name "
+done
+
+# Build up the base header directories.
+echo "Finding base header directories..."
+for dirp in `find @SDK_LOCATION@/usr/include/* -type d -print`
+do
+    dir=${dirp##@SDK_LOCATION@/usr/include/}
+    header_base_dirs="$header_base_dirs@SDK_LOCATION@/usr/include/$dir "
+    header_mod_dirs="$header_mod_dirs./include/$dir "
+    header_install_dirs="$header_install_dirs@includedir@/$dir "
+done
+
+echo "header_base_dirs = $header_base_dirs"
+echo "header_mod_dirs = $header_mod_dirs"
+echo "header_install_dirs = $header_install_dirs"
 
