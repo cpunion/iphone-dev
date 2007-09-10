@@ -15,6 +15,6 @@ AC_ARG_WITH(macosx-sdk,
 
 AC_SUBST(SDK_LOCATION)
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([install-headers.sh])
 AC_OUTPUT
 
