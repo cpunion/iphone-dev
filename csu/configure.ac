@@ -4,6 +4,9 @@
 AC_PREREQ(2.59)
 AC_INIT(iphone-dev-csu, 0.30, pcwalton@uchicago.edu)
 AM_INIT_AUTOMAKE(iphone-dev-csu, 0.30)
+
+AC_PREFIX_DEFAULT(/usr/local/arm-apple-darwin)
+
 AC_CONFIG_SRCDIR([crt.c])
 AM_CONFIG_HEADER(config.h)
 AC_CONFIG_FILES([Makefile])

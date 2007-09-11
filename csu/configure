@@ -273,6 +273,7 @@ PACKAGE_VERSION='0.30'
 PACKAGE_STRING='iphone-dev-csu 0.30'
 PACKAGE_BUGREPORT='pcwalton@uchicago.edu'
 
+ac_default_prefix=/usr/local/arm-apple-darwin
 ac_unique_file="crt.c"
 # Factoring default headers for most tests.
 ac_includes_default="\
@@ -1742,6 +1743,9 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 AMTAR=${AMTAR-"${am_missing_run}tar"}
 
 am__tar='${AMTAR} chof - "$$tardir"'; am__untar='${AMTAR} xf -'
+
+
+
 
 
 
