@@ -1,3 +1,7 @@
+prefix=@prefix@
+
+all:		crt1.o dylib1.o bundle1.o
+
 install:    crt1.o dylib1.o bundle1.o
 	@INSTALL@ -d @prefix@/lib
 	@INSTALL@ crt1.o @prefix@/lib

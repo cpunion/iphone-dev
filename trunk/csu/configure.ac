@@ -7,23 +7,35 @@ AM_INIT_AUTOMAKE(iphone-dev-csu, 0.30)
 
 AC_PREFIX_DEFAULT(/usr/local/arm-apple-darwin)
 
+AC_ARG_ENABLE(bootstrap,
+    AS_HELP_STRING([--enable-bootstrap],
+        [build from source instead of using binaries (default: disabled)]),
+    bootstrap=$enable_bootstrap,
+    bootstrap=no)
+
+AC_PROG_INSTALL
+
 AC_CONFIG_SRCDIR([crt.c])
-AM_CONFIG_HEADER(config.h)
 AC_CONFIG_FILES([Makefile])
+AM_CONFIG_HEADER(config.h)
 
-# Checks for programs.
-AC_PROG_CC
+if test "$bootstrap" = "yes"
+then
+    # Checks for programs.
+    AC_PROG_CC
 
-# Checks for libraries.
+    # Checks for libraries.
 
-# Checks for header files.
-AC_HEADER_STDC
-AC_CHECK_HEADERS([stddef.h])
+    # Checks for header files.
+    AC_HEADER_STDC
+    AC_CHECK_HEADERS([stddef.h])
 
-# Checks for typedefs, structures, and compiler characteristics.
-AC_C_CONST
+    # Checks for typedefs, structures, and compiler characteristics.
+    AC_C_CONST
 
-# Checks for library functions.
-AC_CHECK_FUNCS([atexit])
+    # Checks for library functions.
+    AC_CHECK_FUNCS([atexit])
+fi
+
 AC_OUTPUT
 
