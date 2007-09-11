@@ -5,14 +5,14 @@ Please note that these instructions are subject to change. Before updating your 
 
 =HOWTO build the toolchain=
 
- * Check out a copy of LLVM _SVN_, and build a _release_ build (as opposed to a debug one).
+ * Check out a copy of LLVM _SVN_, and build a _release_ build (as opposed to a debug one). Set the `$LLVMOBJDIR` shell variable to the root of LLVM's _source_ tree (not its install directory!) after installation. This variable is used by LLVM-GCC to find LLVM.
 {{{
 $ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm-svn
 $ pushd llvm-svn
 $ ./configure --enable-optimized
 $ make ENABLE_OPTIMIZED=1
 $ sudo make install
-$ export LLVMOBJDIR=`pwd`
+$ LLVMOBJDIR=`pwd`
 $ popd
 }}}
 
@@ -49,10 +49,10 @@ $ sudo bash install-headers.sh
 $ popd
 }}}
 
- * Install csu, which includes `crt1.o`, `dylib1.o`, and `bundle1.o`. Don't rebuild them from source, as this requires a working cross-GCC, which you don't have yet (and the build-from-source process is broken right now anyway). Binaries are provided for this reason.
+ * Install csu, which includes `crt1.o`, `dylib1.o`, and `bundle1.o`. Don't rebuild them from source, as this requires a working cross-GCC, which you don't have yet (and the build-from-source process for csu is broken right now anyway). Binaries are provided for this reason.
 {{{
 $ pushd csu
-$ ./configure --host=arm-apple-darwin --prefix=/usr/local/arm-apple-darwin
+$ ./configure --host=arm-apple-darwin
 $ sudo make install
 $ popd
 }}}
