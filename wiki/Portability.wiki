@@ -18,7 +18,8 @@ Feel free to add platforms to this list. Make sure you have successfully compile
 ==Untested with any version==
 
  * Mac OS X 10.5, PPC.
- * Windows XP/Cygwin.
  * Windows XP/MinGW.
 
+=Does not build=
 
+ * Windows XP/Cygwin: http://code.google.com/p/iphone-dev/issues/detail?id=5
