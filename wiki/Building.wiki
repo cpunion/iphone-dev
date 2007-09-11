@@ -1,4 +1,5 @@
 #summary How to build the toolchain.
+#labels Featured,Phase-Deploy
 
 _Do not follow these instructions yet if you are a casual user of the toolchain! Use version 0.20 of the toolchain instead. These instructions are a work in progress and are intended for toolchain developers._
 
