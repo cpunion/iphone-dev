@@ -37,7 +37,7 @@ $ popd
 
  * Get a copy of the iPhone root filesystem. This is usually obtained by decrypting and extracting the iPhone restore software using [http://iphone.fiveforty.net/wiki/index.php/Break_DMG_Password these tools], but there are many other methods to obtain this, including simply using `scp` to download all the files from the iPhone over Wi-Fi. Unpack the root filesystem somewhere, and set the environment variable `$HEAVENLY` to its path.
 {{{
-$ HEAVENLY=/usr/share/iphone-filesystem
+$ HEAVENLY=/usr/local/share/iphone-filesystem
 }}}
 
  * Install the iPhone headers to the appropriate place. If you aren't on Mac OS X, replace the `/Developer/SDKs/MacOSX10.4u.sdk` path with the full path to the unpacked Mac OS X 10.4 Universal SDK. If you don't have a copy of this, see below.
