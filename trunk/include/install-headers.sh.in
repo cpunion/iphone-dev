@@ -3,7 +3,12 @@ MACOSX_SDK_FRAMEWORKS="ApplicationServices/CoreGraphics CoreAudio \
     CoreFoundation Foundation CoreServices/CarbonCore CoreServices IOKit \
     DiskArbitration CoreServices/OSServices CoreServices/CFNetwork \
     CoreServices/WebServicesCore CoreServices/SearchKit CoreServices/Metadata \
-    ApplicationServices"
+    ApplicationServices ApplicationServices/ATS ApplicationServices/AE \
+    ApplicationServices/QD ApplicationServices/HIServices \
+    ApplicationServices/PrintCore ApplicationServices/ImageIO \
+    ApplicationServices/LangAnalysis ApplicationServices/ColorSync \
+    ApplicationServices/FindByContent ApplicationServices/SpeechSynthesis \
+    ApplicationServices/LaunchServices"
 LOCAL_FRAMEWORKS="Celestial CoreSurface GraphicsServices LayerKit UIKit \
     vmutils" 
 
