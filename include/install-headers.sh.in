@@ -1,6 +1,6 @@
 #!/bin/bash
 MACOSX_SDK_FRAMEWORKS="ApplicationServices/CoreGraphics CoreAudio \
-    CoreFoundation Foundation CoreServices/CarbonCore"
+    CoreFoundation Foundation CoreServices/CarbonCore CoreServices IOKit"
 LOCAL_FRAMEWORKS="Celestial CoreSurface GraphicsServices LayerKit UIKit \
     vmutils" 
 
