@@ -1,0 +1,24 @@
+#summary Platforms that the toolchain is known to work on.
+#labels Featured,Phase-QA
+
+=Tested platforms=
+
+Feel free to add platforms to this list. Make sure you have successfully compiled and tested a UIKit-based application before stating that the toolchain works properly.
+
+ * Mac OS X 10.4, Intel. An installed Tiger SDK is automatically detected, so the Xcode DMG is not necessary.
+ * Ubuntu Feisty Fawn, Intel.
+
+=Untested, but should work=
+
+==Worked with earlier versions of the toolchain==
+
+ * Mac OS X 10.4, PPC.
+ * Mac OS X 10.5, Intel.
+
+==Untested with any version==
+
+ * Mac OS X 10.5, PPC.
+ * Windows XP/Cygwin.
+ * Windows XP/MinGW.
+
+
