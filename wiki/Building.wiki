@@ -90,3 +90,7 @@ gunzip -c ../MacOSX10.4.Universal.pkg/Contents/Archive.pax.gz | cpio -i
 popd
 }}}
  * The SDK files should now live in `MacOSX10.4-Universal-SDK/Developer/SDKs/MacOSX10.4u.sdk` in the current directory. You'll pass the path to this directory to the configure script in the `include` directory. Feel free to get rid of the Xcode DMG and the package directory now.
+
+=Gotchas=
+
+ * Make sure that there are no spaces in any of the directory names that you use. GCC does not build if there are spaces in the directory names, and the shell scripts will not work. This is most often a problem on Windows.
