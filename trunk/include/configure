@@ -1349,32 +1349,35 @@ if test "${with_macosx_sdk+set}" = set; then
   withval="$with_macosx_sdk"
   SDK_LOCATION=$withval
 else
-  echo "$as_me:$LINENO: checking for /Developer/SDKs/MacOSX10.4u.sdk" >&5
-echo $ECHO_N "checking for /Developer/SDKs/MacOSX10.4u.sdk... $ECHO_C" >&6
-if test "${ac_cv_file__Developer_SDKs_MacOSX10_4u_sdk+set}" = set; then
+  SDK_LOCATION=/Developer/SDKs/MacOSX10.4u.sdk
+fi;
+
+as_ac_File=`echo "ac_cv_file_$SDK_LOCATION/usr/include/TargetConditionals.h" | $as_tr_sh`
+echo "$as_me:$LINENO: checking for $SDK_LOCATION/usr/include/TargetConditionals.h" >&5
+echo $ECHO_N "checking for $SDK_LOCATION/usr/include/TargetConditionals.h... $ECHO_C" >&6
+if eval "test \"\${$as_ac_File+set}\" = set"; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
   test "$cross_compiling" = yes &&
   { { echo "$as_me:$LINENO: error: cannot check for file existence when cross compiling" >&5
 echo "$as_me: error: cannot check for file existence when cross compiling" >&2;}
    { (exit 1); exit 1; }; }
-if test -r "/Developer/SDKs/MacOSX10.4u.sdk"; then
-  ac_cv_file__Developer_SDKs_MacOSX10_4u_sdk=yes
+if test -r "$SDK_LOCATION/usr/include/TargetConditionals.h"; then
+  eval "$as_ac_File=yes"
 else
-  ac_cv_file__Developer_SDKs_MacOSX10_4u_sdk=no
+  eval "$as_ac_File=no"
 fi
 fi
-echo "$as_me:$LINENO: result: $ac_cv_file__Developer_SDKs_MacOSX10_4u_sdk" >&5
-echo "${ECHO_T}$ac_cv_file__Developer_SDKs_MacOSX10_4u_sdk" >&6
-if test $ac_cv_file__Developer_SDKs_MacOSX10_4u_sdk = yes; then
-  SDK_LOCATION=/Developer/SDKs/MacOSX10.4u.sdk
+echo "$as_me:$LINENO: result: `eval echo '${'$as_ac_File'}'`" >&5
+echo "${ECHO_T}`eval echo '${'$as_ac_File'}'`" >&6
+if test `eval echo '${'$as_ac_File'}'` = yes; then
+  true
 else
   { { echo "$as_me:$LINENO: error: You must have a copy of the Mac OS X 10.4 Universal SDK. Please see the wiki at http://iphone-dev.googlecode.com/ for information on how to obtain this. If you already have the SDK use a --with-macosx-sdk=path option to specify the path." >&5
 echo "$as_me: error: You must have a copy of the Mac OS X 10.4 Universal SDK. Please see the wiki at http://iphone-dev.googlecode.com/ for information on how to obtain this. If you already have the SDK use a --with-macosx-sdk=path option to specify the path." >&2;}
    { (exit 1); exit 1; }; }
 fi
 
-fi;
 
 
 
