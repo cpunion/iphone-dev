@@ -1,5 +1,5 @@
 --- /Developer/SDKs/MacOSX10.4u.sdk/usr/include/TargetConditionals.h	2006-09-11 21:13:49.000000000 -0500
-+++ ./TargetConditionals.h	2007-09-11 11:34:39.000000000 -0500
++++ ./TargetConditionals.h	2007-09-11 11:39:49.000000000 -0500
 @@ -26,6 +26,7 @@
          TARGET_CPU_MIPS         - Compiler is generating MIPS instructions
          TARGET_CPU_SPARC        - Compiler is generating Sparc instructions
@@ -42,7 +42,7 @@
          #define TARGET_RT_LITTLE_ENDIAN 1
          #define TARGET_RT_BIG_ENDIAN    0
          #define TARGET_RT_64_BIT        1
-+    #elif defined(__ARM__)
++    #elif defined(__arm__)
 +        #define TARGET_CPU_PPC          0
 +        #define TARGET_CPU_PPC64        0
 +        #define TARGET_CPU_68K          0
