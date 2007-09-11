@@ -26,6 +26,16 @@ do
     header_dirs="$header_dirs$header_dir "
     header_dirs="$header_dirs./include/$bare_fw_name "
     header_dirs="$header_dirs@includedir@/$bare_fw_name "
+
+    # Add subdirectories too
+    for dirp in `find $header_dir/* -type d -print`
+    do
+        dir=${dirp##$header_dir}
+
+        header_dirs="$header_dirs$header_dir$dir "
+        header_dirs="$header_dirs./include/$bare_fw_name$dir "
+        header_dirs="$header_dirs@includedir@/$bare_fw_name$dir "
+    done
 done
 
 # Build up the base header directories.
