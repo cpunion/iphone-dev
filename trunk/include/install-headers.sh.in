@@ -117,7 +117,7 @@ do
                     @INSTALL_DATA@ $header_base_dir/$h $header_install_dir/$h
                 fi
 
-                if test -e $header_mod_dir/$h.diff
+                if test -e $header_mod_dir/$h.diff -a ! -e $header_mod_dir/$h
                 then
                     echo "Applying local patch to $h"
                     patch $header_install_dir/$h $header_mod_dir/$h.diff
