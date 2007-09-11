@@ -10,7 +10,7 @@ MACOSX_SDK_FRAMEWORKS="ApplicationServices/CoreGraphics CoreAudio \
     ApplicationServices/FindByContent ApplicationServices/SpeechSynthesis \
     ApplicationServices/LaunchServices"
 LOCAL_FRAMEWORKS="Celestial CoreSurface GraphicsServices LayerKit UIKit \
-    vmutils Message" 
+    vmutils Message BluetoothManager" 
 
 prefix="@prefix@"
 INSTALL="@INSTALL@"
