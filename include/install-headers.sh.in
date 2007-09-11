@@ -8,9 +8,9 @@ MACOSX_SDK_FRAMEWORKS="ApplicationServices/CoreGraphics CoreAudio \
     ApplicationServices/PrintCore ApplicationServices/ImageIO \
     ApplicationServices/LangAnalysis ApplicationServices/ColorSync \
     ApplicationServices/FindByContent ApplicationServices/SpeechSynthesis \
-    ApplicationServices/LaunchServices Message"
+    ApplicationServices/LaunchServices"
 LOCAL_FRAMEWORKS="Celestial CoreSurface GraphicsServices LayerKit UIKit \
-    vmutils" 
+    vmutils Message" 
 
 prefix="@prefix@"
 INSTALL="@INSTALL@"
