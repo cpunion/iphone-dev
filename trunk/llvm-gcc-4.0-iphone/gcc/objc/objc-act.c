@@ -12896,8 +12896,11 @@ objc_finish_message_expr (tree receiver, tree sel_name, tree method_params)
 	      && TREE_TYPE (receiver) == objc_class_type))
 	check_for_nil = false;
 
-      if (!targetm.calls.struct_value_rtx (0, 0)
-          && (TREE_CODE (ret_type) == RECORD_TYPE 
+      if (
+#ifndef BROKEN_STRUCT_VALUE_RTX
+            !targetm.calls.struct_value_rtx (0, 0) &&
+#endif
+            (TREE_CODE (ret_type) == RECORD_TYPE 
        	      || TREE_CODE (ret_type) == UNION_TYPE)
 	  /* APPLE LOCAL begin radar 5080710 */
           && (TREE_ADDRESSABLE (ret_type) 
