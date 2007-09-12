@@ -4,7 +4,7 @@ version=4.0
 
 while getopts "lr:" the_option
 do
-    case the_option in
+    case $the_option in
         l)  local_only=yes  ;;
         r)  version=$OPTARG ;;
     esac
