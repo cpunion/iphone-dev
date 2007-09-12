@@ -397,7 +397,8 @@ extern GTY(()) rtx aof_pic_label;
   {"soft-float", &target_float_switch,					\
    N_("Alias for -mfloat-abi=soft"), "s"},				\
   {"hard-float", &target_float_switch,					\
-   N_("Alias for -mfloat-abi=hard"), "h"}				\
+   N_("Alias for -mfloat-abi=hard"), "h"},				\
+    SUBTARGET_OPTIONS                                   \
 }
 
 /* Support for a compile-time default CPU, et cetera.  The rules are:
