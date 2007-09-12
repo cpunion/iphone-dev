@@ -1,11 +1,11 @@
 #!/bin/bash
-local_only=no
+local_only=yes
 version=4.0
 
-while getopts "lr:" the_option
+while getopts "cr:" the_option
 do
     case $the_option in
-        l)  local_only=yes  ;;
+        c)  local_only=no   ;;
         r)  version=$OPTARG ;;
     esac
 done
