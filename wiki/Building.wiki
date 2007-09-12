@@ -64,9 +64,9 @@ $ ./fill-llvm-gcc.sh
 
  * Configure and make LLVM-GCC. Make sure that `$LLVMOBJDIR` and `$HEAVENLY` are set per the instructions above.
 {{{
-$ mkdir llvm-gcc-iphone-build
-$ pushd llvm-gcc-iphone-build
-$ ../llvm-gcc-iphone/configure --enable-llvm=$LLVMOBJDIR --enable-languages=c,c++,objc,obj-c++ \
+$ mkdir llvm-gcc-4.0-iphone-build
+$ pushd llvm-gcc-4.0-iphone-build
+$ ../llvm-gcc-4.0-iphone/configure --enable-llvm=$LLVMOBJDIR --enable-languages=c,c++,objc,obj-c++ \
 --target=arm-apple-darwin --enable-sjlj-exceptions --with-heavenly=$HEAVENLY \
 --with-as=/usr/local/bin/arm-apple-darwin-as --with-ld=/usr/local/bin/arm-apple-darwin-ld
 $ make LLVM_VERSION_INFO=2.0-svn-iphone-dev-0.3-svn 
