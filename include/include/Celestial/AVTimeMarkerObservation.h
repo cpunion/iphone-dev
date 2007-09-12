@@ -4,9 +4,7 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2006 by Steve Nygard.
  */
 
-#import "NSObject.h"
-
-@class NSArray;
+#import <Foundation/Foundation.h>
 
 @interface AVTimeMarkerObservation : NSObject
 {
