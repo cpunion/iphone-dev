@@ -7,6 +7,7 @@ Feel free to add platforms to this list. Make sure you have successfully compile
 
  * Mac OS X 10.4, Intel. An installed Tiger SDK is automatically detected, so the Xcode DMG is not necessary.
  * Ubuntu Feisty Fawn, Intel.
+ * Gentoo Linux 2007.0, x86_64 (-Mike)
 
 =Untested, but should work=
 
