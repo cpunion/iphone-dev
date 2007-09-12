@@ -403,6 +403,9 @@ extern int flag_iasm_blocks;
 #undef FPUTYPE_DEFAULT
 #define FPUTYPE_DEFAULT FPUTYPE_VFP
 
+/* iphone-dev local: do this a la the i386 target */
+#define rs6000_alignment_flags target_flags
+
 /* APPLE LOCAL begin LLVM */
 #ifdef ENABLE_LLVM
 
