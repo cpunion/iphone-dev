@@ -5,6 +5,14 @@ Please note that these instructions are subject to change. Before updating your 
 
 =HOWTO build the toolchain=
 
+ * Ensure that you have a copy of `bison` and `flex` installed on your system. All major systems should have these tools installed or available in package management systems.
+{{{
+$ bison --version
+GNU Bison version 1.28
+$ flex --version
+flex version 2.5.4
+}}}
+
  * Check out a copy of LLVM _SVN_, and build a _release_ build (as opposed to a debug one). Set the `$LLVMOBJDIR` shell variable to the root of LLVM's _source_ tree (not its install directory!) after installation. This variable is used by LLVM-GCC to find LLVM.
 {{{
 $ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm-svn
@@ -95,3 +103,4 @@ popd
 
  * Make sure that there are no spaces in any of the directory names that you use. GCC does not build if there are spaces in the directory names, and the shell scripts will not work. This is most often a problem on Windows.
  * Make sure that `/usr/local/bin` is in your `PATH`. This is not the case out of the box on Mac OS X, although chances are if you've installed things from source before you've added it already.
+ * If LLVM failed to compile because of missing `bison` and/or `flex` (evidence that this was the case is a failed compile on `utils/TableGen/FileLexer.l`), you must `make clean` _and_ delete `utils/TableGen/FileParser.h` before trying again with `bison` and `flex` installed. LLVM's `make clean` script does not always properly clean up after a failed build.
