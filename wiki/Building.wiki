@@ -94,3 +94,4 @@ popd
 =Gotchas=
 
  * Make sure that there are no spaces in any of the directory names that you use. GCC does not build if there are spaces in the directory names, and the shell scripts will not work. This is most often a problem on Windows.
+ * Make sure that `/usr/local/bin` is in your `PATH`. This is not the case out of the box on Mac OS X, although chances are if you've installed things from source before you've added it already.
