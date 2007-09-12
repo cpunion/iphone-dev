@@ -45,17 +45,17 @@ popd
 echo "Copying files..."
 while read f
 do
-    if test -e "llvm-gcc-iphone/$f"
+    if test -e "llvm-gcc-$version-iphone/$f"
     then
         echo "Skipping $f"
     else
         if test -d "llvm-gcc-$version/$f"
         then
-            echo "Making directory llvm-gcc-iphone/$f"
-            mkdir -p "llvm-gcc-iphone/$f" || exit 1
+            echo "Making directory llvm-gcc-$version-iphone/$f"
+            mkdir -p "llvm-gcc-$version-iphone/$f" || exit 1
         else
-            echo "Copying llvm-gcc-$version/$f to llvm-gcc-iphone/$f"
-            cp "llvm-gcc-$version/$f" "llvm-gcc-iphone/$f" || exit 1
+            echo "Copying llvm-gcc-$version/$f to llvm-gcc-$version-iphone/$f"
+            cp "llvm-gcc-$version/$f" "llvm-gcc-$version-iphone/$f" || exit 1
         fi
     fi
 done < llvm-gcc-$version-files.tmp
