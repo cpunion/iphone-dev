@@ -1,11 +1,5 @@
 /* config.in.  Generated from configure.ac by autoheader.  */
 
-/* 1234 = LIL_ENDIAN, 4321 = BIGENDIAN */
-#undef BYTEORDER
-
-/* Define as the number of bits in a byte, if \`limits.h' doesn't. */
-#undef CHAR_BIT
-
 /* Define 0/1 to force the choice for exception handling model. */
 #undef CONFIG_SJLJ_EXCEPTIONS
 
@@ -40,10 +34,6 @@
 /* Define if you want the garbage collector to do object poisoning and other
    memory allocation checks. This is quite expensive. */
 #undef ENABLE_GC_CHECKING
-
-/* Define to 1 if translation of program messages to the user's native
-   language is requested. */
-#undef ENABLE_NLS
 
 /* Define if you want all operations on RTL (the basic data structure of the
    optimizer and back end) to be checked for dynamic type safety at runtime.
@@ -89,55 +79,8 @@
    preserves file table indices exactly as given. */
 #undef HAVE_AS_DWARF2_DEBUG_LINE
 
-/* Define if your assembler supports explicit relocations. */
-#undef HAVE_AS_EXPLICIT_RELOCS
-
-/* Define if your assembler supports the --gdwarf2 option. */
-#undef HAVE_AS_GDWARF2_DEBUG_FLAG
-
 /* Define true if the assembler supports '.long foo@GOTOFF'. */
 #undef HAVE_AS_GOTOFF_IN_DATA
-
-/* Define if your assembler supports the --gstabs option. */
-#undef HAVE_AS_GSTABS_DEBUG_FLAG
-
-/* Define if your assembler supports the Sun syntax for cmov. */
-#undef HAVE_AS_IX86_CMOV_SUN_SYNTAX
-
-/* Define if your assembler supports the lituse_jsrdirect relocation. */
-#undef HAVE_AS_JSRDIRECT_RELOCS
-
-/* Define if your assembler supports .sleb128 and .uleb128. */
-#undef HAVE_AS_LEB128
-
-/* Define if your assembler supports ltoffx and ldxmov relocations. */
-#undef HAVE_AS_LTOFFX_LDXMOV_RELOCS
-
-/* Define if your assembler supports mfcr field. */
-#undef HAVE_AS_MFCRF
-
-/* Define if your assembler supports the -no-mul-bug-abort option. */
-#undef HAVE_AS_NO_MUL_BUG_ABORT_OPTION
-
-/* Define if your assembler supports offsetable %lo(). */
-#undef HAVE_AS_OFFSETABLE_LO10
-
-/* Define if your assembler supports .register. */
-#undef HAVE_AS_REGISTER_PSEUDO_OP
-
-/* Define if your assembler supports -relax option. */
-#undef HAVE_AS_RELAX_OPTION
-
-/* Define if your assembler and linker support unaligned PC relative relocs.
-   */
-#undef HAVE_AS_SPARC_UA_PCREL
-
-/* Define if your assembler and linker support unaligned PC relative relocs
-   against hidden symbols. */
-#undef HAVE_AS_SPARC_UA_PCREL_HIDDEN
-
-/* Define if your assembler supports thread-local storage. */
-#undef HAVE_AS_TLS
 
 /* Define to 1 if you have the `atoll' function. */
 #undef HAVE_ATOLL
@@ -153,178 +96,6 @@
 
 /* Define if <time.h> defines clock_t. */
 #undef HAVE_CLOCK_T
-
-/* Define to 1 if we found a declaration for 'abort', otherwise define to 0.
-   */
-#undef HAVE_DECL_ABORT
-
-/* Define to 1 if we found a declaration for 'asprintf', otherwise define to
-   0. */
-#undef HAVE_DECL_ASPRINTF
-
-/* Define to 1 if we found a declaration for 'atof', otherwise define to 0. */
-#undef HAVE_DECL_ATOF
-
-/* Define to 1 if we found a declaration for 'atol', otherwise define to 0. */
-#undef HAVE_DECL_ATOL
-
-/* Define to 1 if we found a declaration for 'basename', otherwise define to
-   0. */
-#undef HAVE_DECL_BASENAME
-
-/* Define to 1 if we found a declaration for 'calloc', otherwise define to 0.
-   */
-#undef HAVE_DECL_CALLOC
-
-/* Define to 1 if we found a declaration for 'clearerr_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_CLEARERR_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'clock', otherwise define to 0.
-   */
-#undef HAVE_DECL_CLOCK
-
-/* Define to 1 if we found a declaration for 'errno', otherwise define to 0.
-   */
-#undef HAVE_DECL_ERRNO
-
-/* Define to 1 if we found a declaration for 'feof_unlocked', otherwise define
-   to 0. */
-#undef HAVE_DECL_FEOF_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'ferror_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FERROR_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'fflush_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FFLUSH_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'fgetc_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FGETC_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'fgets_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FGETS_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'fileno_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FILENO_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'fprintf_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FPRINTF_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'fputc_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FPUTC_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'fputs_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FPUTS_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'fread_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FREAD_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'free', otherwise define to 0. */
-#undef HAVE_DECL_FREE
-
-/* Define to 1 if we found a declaration for 'fwrite_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_FWRITE_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'getchar_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_GETCHAR_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'getcwd', otherwise define to 0.
-   */
-#undef HAVE_DECL_GETCWD
-
-/* Define to 1 if we found a declaration for 'getc_unlocked', otherwise define
-   to 0. */
-#undef HAVE_DECL_GETC_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'getenv', otherwise define to 0.
-   */
-#undef HAVE_DECL_GETENV
-
-/* Define to 1 if we found a declaration for 'getopt', otherwise define to 0.
-   */
-#undef HAVE_DECL_GETOPT
-
-/* Define to 1 if we found a declaration for 'getpagesize', otherwise define
-   to 0. */
-#undef HAVE_DECL_GETPAGESIZE
-
-/* Define to 1 if we found a declaration for 'getrlimit', otherwise define to
-   0. */
-#undef HAVE_DECL_GETRLIMIT
-
-/* Define to 1 if we found a declaration for 'getrusage', otherwise define to
-   0. */
-#undef HAVE_DECL_GETRUSAGE
-
-/* Define to 1 if we found a declaration for 'getwd', otherwise define to 0.
-   */
-#undef HAVE_DECL_GETWD
-
-/* Define to 1 if we found a declaration for 'ldgetname', otherwise define to
-   0. */
-#undef HAVE_DECL_LDGETNAME
-
-/* Define to 1 if we found a declaration for 'malloc', otherwise define to 0.
-   */
-#undef HAVE_DECL_MALLOC
-
-/* Define to 1 if we found a declaration for 'putchar_unlocked', otherwise
-   define to 0. */
-#undef HAVE_DECL_PUTCHAR_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'putc_unlocked', otherwise define
-   to 0. */
-#undef HAVE_DECL_PUTC_UNLOCKED
-
-/* Define to 1 if we found a declaration for 'realloc', otherwise define to 0.
-   */
-#undef HAVE_DECL_REALLOC
-
-/* Define to 1 if we found a declaration for 'sbrk', otherwise define to 0. */
-#undef HAVE_DECL_SBRK
-
-/* Define to 1 if we found a declaration for 'setrlimit', otherwise define to
-   0. */
-#undef HAVE_DECL_SETRLIMIT
-
-/* Define to 1 if we found a declaration for 'sigaltstack', otherwise define
-   to 0. */
-#undef HAVE_DECL_SIGALTSTACK
-
-/* Define to 1 if we found a declaration for 'snprintf', otherwise define to
-   0. */
-#undef HAVE_DECL_SNPRINTF
-
-/* Define to 1 if we found a declaration for 'strsignal', otherwise define to
-   0. */
-#undef HAVE_DECL_STRSIGNAL
-
-/* Define to 1 if we found a declaration for 'strstr', otherwise define to 0.
-   */
-#undef HAVE_DECL_STRSTR
-
-/* Define to 1 if we found a declaration for 'strverscmp', otherwise define to
-   0. */
-#undef HAVE_DECL_STRVERSCMP
-
-/* Define to 1 if we found a declaration for 'times', otherwise define to 0.
-   */
-#undef HAVE_DECL_TIMES
-
-/* Define to 1 if we found a declaration for 'vasprintf', otherwise define to
-   0. */
-#undef HAVE_DECL_VASPRINTF
 
 /* Define to 1 if you have the <direct.h> header file. */
 #undef HAVE_DIRECT_H
@@ -374,42 +145,15 @@
 /* Define to 1 if you have the `fwrite_unlocked' function. */
 #undef HAVE_FWRITE_UNLOCKED
 
-/* Define if your assembler supports .balign and .p2align. */
-#undef HAVE_GAS_BALIGN_AND_P2ALIGN
-
 /* Define 0/1 if your assembler supports COMDAT group. */
 #undef HAVE_GAS_COMDAT_GROUP
-
-/* Define if your assembler uses the new HImode fild and fist notation. */
-#undef HAVE_GAS_FILDS_FISTS
 
 /* Define if your assembler and linker support .hidden. */
 #undef HAVE_GAS_HIDDEN
 
-/* Define if your assembler supports .literal16. */
-#undef HAVE_GAS_LITERAL16
-
-/* Define if your assembler supports specifying the maximum number of bytes to
-   skip when using the GAS .p2align command. */
-#undef HAVE_GAS_MAX_SKIP_P2ALIGN
-
-/* Define if your assembler supports .nsubspa comdat option. */
-#undef HAVE_GAS_NSUBSPA_COMDAT
-
-/* Define if your assembler and linker support 32-bit section relative relocs
-   via '.secrel32 label'. */
-#undef HAVE_GAS_PE_SECREL32_RELOC
-
 /* Define 0/1 if your assembler supports marking sections with SHF_MERGE flag.
    */
 #undef HAVE_GAS_SHF_MERGE
-
-/* Define if your assembler supports .subsection and .subsection -1 starts
-   emitting at the beginning of your section. */
-#undef HAVE_GAS_SUBSECTION_ORDERING
-
-/* Define if your assembler supports .weak. */
-#undef HAVE_GAS_WEAK
 
 /* Define to 1 if you have the `getchar_unlocked' function. */
 #undef HAVE_GETCHAR_UNLOCKED
@@ -431,9 +175,6 @@
 
 /* Define to 1 if you have the <iconv.h> header file. */
 #undef HAVE_ICONV_H
-
-/* Define .init_array/.fini_array sections are available and working. */
-#undef HAVE_INITFINI_ARRAY
 
 /* Define if you have a working <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
@@ -481,9 +222,6 @@
 /* Define to 1 if you have the <locale.h> header file. */
 #undef HAVE_LOCALE_H
 
-/* Define if your compiler supports the \`long long' type. */
-#undef HAVE_LONG_LONG
-
 /* Define to 1 if you have the <mach/mach_time.h> header file. */
 #undef HAVE_MACH_MACH_TIME_H
 
@@ -505,20 +243,8 @@
 /* Define to 1 if you have the `mmap' function. */
 #undef HAVE_MMAP
 
-/* Define if mmap with MAP_ANON(YMOUS) works. */
-#undef HAVE_MMAP_ANON
-
-/* Define if mmap of /dev/zero works. */
-#undef HAVE_MMAP_DEV_ZERO
-
-/* Define if read-only mmap of a plain file works. */
-#undef HAVE_MMAP_FILE
-
 /* Define to 1 if you have the `nl_langinfo' function. */
 #undef HAVE_NL_LANGINFO
-
-/* Define if printf supports "%p". */
-#undef HAVE_PRINTF_PTR
 
 /* Define to 1 if you have the `putchar_unlocked' function. */
 #undef HAVE_PUTCHAR_UNLOCKED
@@ -620,21 +346,11 @@
 /* Define to 1 if `vfork' works. */
 #undef HAVE_WORKING_VFORK
 
-/* Define if your compiler supports the \`__int64' type. */
-#undef HAVE___INT64
-
 /* Contains the path to the unpacked iPhone filesystem. */
 #undef HEAVENLY_DIR
 
-/* Define if the host machine stores words of multi-word integers in
-   big-endian order. */
-#undef HOST_WORDS_BIG_ENDIAN
-
 /* Define as const if the declaration of iconv() needs const. */
 #undef ICONV_CONST
-
-/* Define if host mkdir takes a single argument. */
-#undef MKDIR_TAKES_ONE_ARG
 
 /* Define to 1 if HOST_WIDE_INT must be 64 bits wide (see hwint.h). */
 #undef NEED_64BIT_HOST_WIDE_INT
@@ -663,29 +379,26 @@
 /* Define to PREFIX/include if cpp should also search that directory. */
 #undef PREFIX_INCLUDE_DIR
 
-/* The size of `int', as computed by sizeof. */
+/* The size of a `int', as computed by sizeof. */
 #undef SIZEOF_INT
 
-/* The size of `long', as computed by sizeof. */
+/* The size of a `long', as computed by sizeof. */
 #undef SIZEOF_LONG
 
-/* The size of `long long', as computed by sizeof. */
+/* The size of a `long long', as computed by sizeof. */
 #undef SIZEOF_LONG_LONG
 
-/* The size of `short', as computed by sizeof. */
+/* The size of a `short', as computed by sizeof. */
 #undef SIZEOF_SHORT
 
-/* The size of `void *', as computed by sizeof. */
+/* The size of a `void *', as computed by sizeof. */
 #undef SIZEOF_VOID_P
 
-/* The size of `__int64', as computed by sizeof. */
+/* The size of a `__int64', as computed by sizeof. */
 #undef SIZEOF___INT64
 
 /* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS
-
-/* Define if you can safely include both <string.h> and <strings.h>. */
-#undef STRING_WITH_STRINGS
 
 /* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
 #undef TIME_WITH_SYS_TIME
@@ -702,9 +415,6 @@
 
 /* Define to be the last portion of registry key on windows hosts. */
 #undef WIN32_REGISTRY_KEY
-
-/* whether byteorder is bigendian */
-#undef WORDS_BIGENDIAN
 
 /* Always define this when using the GNU C Library */
 #undef _GNU_SOURCE
