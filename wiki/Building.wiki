@@ -57,7 +57,7 @@ $ sudo make install
 $ popd
 }}}
 
- * Fill your installation of LLVM-GCC. Make sure that your Internet connection is up, and execute:
+ * Fill your installation of LLVM-GCC.
 {{{
 $ ./fill-llvm-gcc.sh
 }}}
