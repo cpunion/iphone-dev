@@ -2928,10 +2928,9 @@ enum arm_builtins
 #define TARGET_LLVM_MIN_BYTES_COPY_BY_MEMCPY 4
 /* APPLE LOCAL end llvm */
 
-/* iphone-dev local: Darwin-specific stuff */
-#define OPTION_ALIGN_MAC68K         0
-#define OPTION_ALIGN_NATURAL        1
-#define OPTION_MASK_ALIGN_NATURAL   0x00000001
-#define OPTION_MASK_ALIGN_MAC68K    0x00000002
+/* iphone-dev local: arm_struct_value_rtx is broken due to a silly hack (see
+ * the FIXME in arm.c), which confuses the obj-c backend. So we define this
+ * macro to enable the obj-c backend to work around this problem. */
+#define BROKEN_STRUCT_VALUE_RTX
 
 #endif /* ! GCC_ARM_H */
