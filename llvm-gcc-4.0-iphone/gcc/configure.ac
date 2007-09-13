@@ -1978,7 +1978,7 @@ case $in_tree_gas in
     ;;
 esac
 
-AC_DEFINE_UNQUOTED(DEFAULT_ASSEMBLER,"$gcc_cv_as",
+AC_DEFINE_UNQUOTED(DEFAULT_ASSEMBLER,"`which $gcc_cv_as`",
 [Define to enable the use of a default assembler.])
 
 # Identify the linker which will work hand-in-glove with the newly
@@ -2106,7 +2106,7 @@ case $in_tree_ld in
     ;;
 esac
 
-AC_DEFINE_UNQUOTED(DEFAULT_LINKER,"$gcc_cv_ld",
+AC_DEFINE_UNQUOTED(DEFAULT_LINKER,"`which $gcc_cv_ld`",
     [Define to enable the use of a default linker.])
 
 # Figure out what nm we will be using.
