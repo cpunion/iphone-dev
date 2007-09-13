@@ -1905,6 +1905,7 @@ elif test -f $gcc_cv_as_gas_srcdir/configure.in \
 m4_pattern_allow([AS_FOR_TARGET])dnl
 elif test -x "$AS_FOR_TARGET"; then
         gcc_cv_as="$AS_FOR_TARGET"
+    DEFAULT_ASSEMBLER=$AS_FOR_TARGET
 elif test -x "$AS" && test x$host = x$target; then
 	gcc_cv_as="$AS"
 fi
@@ -2030,6 +2031,7 @@ changequote([,])dnl
 	$LN_S ../ld/ld-new$build_exeext collect-ld$build_exeext 2>/dev/null
 elif test -x "$LD_FOR_TARGET"; then
         gcc_cv_ld="$LD_FOR_TARGET"
+    DEFAULT_LINKER=$LD_FOR_TARGET
 elif test -x "$LD" && test x$host = x$target; then
 	gcc_cv_ld="$LD"
 fi
