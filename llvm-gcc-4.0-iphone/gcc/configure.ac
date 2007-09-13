@@ -201,8 +201,6 @@ if test x"${DEFAULT_LINKER+set}" = x"set"; then
   elif $DEFAULT_LINKER -v < /dev/null 2>&1 | grep GNU > /dev/null; then
     gnu_ld_flag=yes
   fi
-  AC_DEFINE_UNQUOTED(DEFAULT_LINKER,"$DEFAULT_LINKER",
-	[Define to enable the use of a default linker.])
 fi
 
 AC_MSG_CHECKING([whether a default linker was specified])
@@ -241,8 +239,6 @@ if test x"${DEFAULT_ASSEMBLER+set}" = x"set"; then
   elif $DEFAULT_ASSEMBLER -v < /dev/null 2>&1 | grep GNU > /dev/null; then
     gas_flag=yes
   fi
-  AC_DEFINE_UNQUOTED(DEFAULT_ASSEMBLER,"$DEFAULT_ASSEMBLER",
-	[Define to enable the use of a default assembler.])
 fi
 
 AC_MSG_CHECKING([whether a default assembler was specified])
@@ -1982,6 +1978,9 @@ case $in_tree_gas in
     ;;
 esac
 
+AC_DEFINE_UNQUOTED(DEFAULT_ASSEMBLER,"$gcc_cv_as",
+[Define to enable the use of a default assembler.])
+
 # Identify the linker which will work hand-in-glove with the newly
 # built GCC, so that we can examine its features.  This is the linker
 # which will be driven by the driver program.
@@ -2031,7 +2030,6 @@ changequote([,])dnl
 	$LN_S ../ld/ld-new$build_exeext collect-ld$build_exeext 2>/dev/null
 elif test -x "$LD_FOR_TARGET"; then
         gcc_cv_ld="$LD_FOR_TARGET"
-    DEFAULT_LINKER=$LD_FOR_TARGET
 elif test -x "$LD" && test x$host = x$target; then
 	gcc_cv_ld="$LD"
 fi
@@ -2107,6 +2105,9 @@ case $in_tree_ld in
     AC_MSG_RESULT($gcc_cv_ld)
     ;;
 esac
+
+AC_DEFINE_UNQUOTED(DEFAULT_LINKER,"$gcc_cv_ld",
+    [Define to enable the use of a default linker.])
 
 # Figure out what nm we will be using.
 gcc_cv_binutils_srcdir=`echo $srcdir | sed -e 's,/gcc$,,'`/binutils

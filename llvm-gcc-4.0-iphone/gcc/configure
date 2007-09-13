@@ -1740,9 +1740,6 @@ echo "$as_me: error: cannot execute: $DEFAULT_LINKER: check --with-ld or env. va
     gnu_ld_flag=yes
   fi
 
-cat >>confdefs.h <<_ACEOF
-#define DEFAULT_LINKER "$DEFAULT_LINKER"
-_ACEOF
 
 fi
 
@@ -1799,10 +1796,6 @@ echo "$as_me: error: cannot execute: $DEFAULT_ASSEMBLER: check --with-as or env.
   elif $DEFAULT_ASSEMBLER -v < /dev/null 2>&1 | grep GNU > /dev/null; then
     gas_flag=yes
   fi
-
-cat >>confdefs.h <<_ACEOF
-#define DEFAULT_ASSEMBLER "$DEFAULT_ASSEMBLER"
-_ACEOF
 
 fi
 
@@ -13360,7 +13353,6 @@ gcc_cv_gas_vers=`expr \( \( $gcc_cv_gas_major_version \* 1000 \) \
   fi
 elif test -x "$AS_FOR_TARGET"; then
         gcc_cv_as="$AS_FOR_TARGET"
-    DEFAULT_ASSEMBLER=$AS_FOR_TARGET
 elif test -x "$AS" && test x$host = x$target; then
 	gcc_cv_as="$AS"
 fi
@@ -13439,6 +13431,10 @@ echo "${ECHO_T}$gcc_cv_as" >&6
     ;;
 esac
 
+cat >>confdefs.h <<_ACEOF
+#define DEFAULT_ASSEMBLER "$gcc_cv_as"
+_ACEOF
+
 # Identify the linker which will work hand-in-glove with the newly
 # built GCC, so that we can examine its features.  This is the linker
 # which will be driven by the driver program.
@@ -13485,7 +13481,6 @@ elif test -f $gcc_cv_ld_gld_srcdir/configure.in \
 	$LN_S ../ld/ld-new$build_exeext collect-ld$build_exeext 2>/dev/null
 elif test -x "$LD_FOR_TARGET"; then
         gcc_cv_ld="$LD_FOR_TARGET"
-    DEFAULT_LINKER=$LD_FOR_TARGET
 elif test -x "$LD" && test x$host = x$target; then
 	gcc_cv_ld="$LD"
 fi
@@ -13563,6 +13558,10 @@ echo "${ECHO_T}\"newly built ld\"" >&6
 echo "${ECHO_T}$gcc_cv_ld" >&6
     ;;
 esac
+
+cat >>confdefs.h <<_ACEOF
+#define DEFAULT_LINKER "$gcc_cv_ld"
+_ACEOF
 
 # Figure out what nm we will be using.
 gcc_cv_binutils_srcdir=`echo $srcdir | sed -e 's,/gcc$,,'`/binutils
