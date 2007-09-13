@@ -5,8 +5,8 @@ all:		crt1.o dylib1.o bundle1.o
 .PHONY:	install
 
 install:    crt1.o dylib1.o bundle1.o
-	@INSTALL@ -d @prefix@/lib
-	@INSTALL@ crt1.o @prefix@/lib
-	@INSTALL@ dylib1.o @prefix@/lib
-	@INSTALL@ bundle1.o @prefix@/lib
+	@INSTALL@ -d $(DESTDIR)$(prefix)/lib
+	@INSTALL@ crt1.o $(DESTDIR)$(prefix)/lib
+	@INSTALL@ dylib1.o $(DESTDIR)$(prefix)/lib
+	@INSTALL@ bundle1.o $(DESTDIR)$(prefix)/lib
 
