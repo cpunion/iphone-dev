@@ -13432,7 +13432,7 @@ echo "${ECHO_T}$gcc_cv_as" >&6
 esac
 
 cat >>confdefs.h <<_ACEOF
-#define DEFAULT_ASSEMBLER "$gcc_cv_as"
+#define DEFAULT_ASSEMBLER "`which $gcc_cv_as`"
 _ACEOF
 
 # Identify the linker which will work hand-in-glove with the newly
@@ -13560,7 +13560,7 @@ echo "${ECHO_T}$gcc_cv_ld" >&6
 esac
 
 cat >>confdefs.h <<_ACEOF
-#define DEFAULT_LINKER "$gcc_cv_ld"
+#define DEFAULT_LINKER "`which $gcc_cv_ld`"
 _ACEOF
 
 # Figure out what nm we will be using.
