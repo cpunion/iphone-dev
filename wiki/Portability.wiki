@@ -1,23 +1,26 @@
 #summary Platforms that the toolchain is known to work on.
 #labels Featured,Phase-QA
 
-=Tested platforms=
-
 Feel free to add platforms to this list. Make sure you have successfully compiled and tested a UIKit-based application before stating that the toolchain works properly.
+
+=Supported and tested=
 
  * Mac OS X 10.4, Intel. An installed Tiger SDK is automatically detected, so the Xcode DMG is not necessary.
  * Mac OS X 10.4, PPC. The Xcode DMG is not necessary here either.
  * Ubuntu Feisty Fawn, Intel.
+ * Fedora Core, Intel.
  * Gentoo Linux 2007.0, x86_64 (-Mike)
 
-=Untested, but should work=
+=Supported but untested=
 
-==Untested with any version==
-
- * Windows XP/Cygwin. To build LLVM, see this patch: http://code.google.com/p/iphone-dev/issues/detail?id=5
  * Mac OS X 10.5, PPC.
  * Windows XP/MinGW.
 
-=Does not build=
+=Supported but currently does not build=
 
- * Mac OS X 10.5 Intel. No bug report was left, no details were provided as to why.
+ * Mac OS X 10.5 Intel: http://code.google.com/p/iphone-dev/issues/detail?id=31
+ * Windows XP/Cygwin: http://code.google.com/p/iphone-dev/issues/detail?id=40
+ 
+=Unsupported=
+
+ * Windows XP/Visual Studio.
