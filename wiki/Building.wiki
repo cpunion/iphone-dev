@@ -106,6 +106,4 @@ popd
  * Make sure that there are no spaces in any of the directory names that you use. GCC does not build if there are spaces in the directory names, and the shell scripts will not work. This is most often a problem on Windows.
  * Make sure that `/usr/local/bin` is in your `PATH`. This is not the case out of the box on Mac OS X, although chances are if you've installed things from source before you've added it already.
  * If LLVM failed to compile because of missing `bison` and/or `flex` (evidence that this was the case is a failed compile on `utils/TableGen/FileLexer.l`), you must `make clean` _and_ delete `utils/TableGen/FileParser.h` before trying again with `bison` and `flex` installed. LLVM's `make clean` script does not always properly clean up after a failed build.
- 
- 
- 
+ * Make sure that `$HEAVENLY` points to a copy of the full iPhone root filesystem, not just the unpacked update DMG. If you get errors about being unable to find `-lc`, then your `$HEAVENLY` is set incorrectly, you mistyped the `--with-heavenly` option to `configure`, or your copy of the root partition is incomplete. Your copy of the iPhone root filesystem _must_ include a `usr/lib/libc.dylib` file.
