@@ -3,7 +3,7 @@
 
 Please note that these instructions are subject to change. Before updating your toolchain installation, you should always check the newest version of this page. You should also check [Portability] to see whether there are any special instructions for your particular platform.
 
-*PLEASE FILE BUG REPORTS FOR BUGS! DO NOT LEAVE BUGS AS COMMENTS ON THIS PAGE!*
+_Please file bug reports to report bugs. Do not leave bugs as comments on this page._
 
 =HOWTO build the toolchain=
 
@@ -106,5 +106,6 @@ popd
  * Make sure that there are no spaces in any of the directory names that you use. GCC does not build if there are spaces in the directory names, and the shell scripts will not work. This is most often a problem on Windows.
  * Make sure that `/usr/local/bin` is in your `PATH`. This is not the case out of the box on Mac OS X, although chances are if you've installed things from source before you've added it already.
  * If LLVM failed to compile because of missing `bison` and/or `flex` (evidence that this was the case is a failed compile on `utils/TableGen/FileLexer.l`), you must `make clean` _and_ delete `utils/TableGen/FileParser.h` before trying again with `bison` and `flex` installed. LLVM's `make clean` script does not always properly clean up after a failed build.
+ 
  
  
