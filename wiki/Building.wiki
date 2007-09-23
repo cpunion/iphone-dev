@@ -67,8 +67,9 @@ $ sudo make install
 $ popd
 }}}
 
- * Fill your installation of LLVM-GCC.
+ * Check out and fill your installation of LLVM-GCC. This step should not be necessary in the future, but as we are waiting on Google to give us more space it's what has to be done for the moment.
 {{{
+$ svn co -r 42247 http://llvm.org/svn/llvm-project/llvm-gcc-4.0/trunk llvm-gcc-4.0
 $ ./fill-llvm-gcc.sh
 }}}
 
@@ -107,3 +108,4 @@ popd
  * Make sure that `/usr/local/bin` is in your `PATH`. This is not the case out of the box on Mac OS X, although chances are if you've installed things from source before you've added it already.
  * If LLVM failed to compile because of missing `bison` and/or `flex` (evidence that this was the case is a failed compile on `utils/TableGen/FileLexer.l`), you must `make clean` _and_ delete `utils/TableGen/FileParser.h` before trying again with `bison` and `flex` installed. LLVM's `make clean` script does not always properly clean up after a failed build.
  * Make sure that `$HEAVENLY` points to a copy of the full iPhone root filesystem, not just the unpacked update DMG. If you get errors about being unable to find `-lc`, then your `$HEAVENLY` is set incorrectly, you mistyped the `--with-heavenly` option to `configure`, or your copy of the root partition is incomplete. Your copy of the iPhone root filesystem _must_ include a `usr/lib/libc.dylib` file.
+ 
