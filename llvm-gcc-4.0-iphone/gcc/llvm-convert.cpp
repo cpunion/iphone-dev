@@ -655,6 +655,11 @@ void TreeToLLVM::StartFunctionBody() {
       // Emit annotate intrinsic if arg has annotate attr
       if (DECL_ATTRIBUTES(Args))
         EmitAnnotateIntrinsic(Tmp, Args);
+
+      // Emit gcroot intrinsic if arg has attribute
+      if (POINTER_TYPE_P(TREE_TYPE(Args))
+	  && lookup_attribute ("gcroot", TYPE_ATTRIBUTES(TREE_TYPE(Args))))
+      	EmitTypeGcroot(Tmp, Args);
       
       Client.setName(Name);
       Client.setLocation(Tmp);
@@ -1420,6 +1425,25 @@ void TreeToLLVM::AddBranchFixup(BranchInst *BI, bool isExceptionEdge) {
   BranchFixups.push_back(BranchFixup(BI, isExceptionEdge));
 }
 
+// Emits code to do something for a type attribute
+void TreeToLLVM::EmitTypeGcroot(Value *V, tree decl) {
+
+  Function *gcrootFun = Intrinsic::getDeclaration(TheModule,
+						  Intrinsic::gcroot);
+  
+  // The idea is that it's a pointer to type "Value"
+  // which is opaque* but the routine expects i8** and i8*.
+  const PointerType *Ty = PointerType::get(Type::Int8Ty);
+  V = Builder.CreateBitCast(V, PointerType::get(Ty), "tmp");
+  
+  Value *Ops[2] = {
+    V,
+    ConstantPointerNull::get(Ty)
+  };
+  
+  Builder.CreateCall(gcrootFun, Ops, Ops+2);
+}  
+
 // Emits annotate intrinsic if the decl has the annotate attribute set.
 void TreeToLLVM::EmitAnnotateIntrinsic(Value *V, tree decl) {
   
@@ -1581,6 +1605,17 @@ void TreeToLLVM::EmitAutomaticVariableDecl(tree decl) {
   // Handle annotate attributes
   if (DECL_ATTRIBUTES(decl))
     EmitAnnotateIntrinsic(AI, decl);
+
+  // Handle gcroot attribute
+  if (POINTER_TYPE_P(TREE_TYPE (decl))
+      && lookup_attribute("gcroot", TYPE_ATTRIBUTES(TREE_TYPE (decl))))
+    {
+      // We should null out local variables so that a stack crawl
+      // before initialization doesn't get garbage results to follow.
+      const Type *T = cast<PointerType>(AI->getType())->getElementType();
+      EmitTypeGcroot(AI, decl);
+      Builder.CreateStore(Constant::getNullValue(T), AI);
+    }
   
   if (TheDebugInfo) {
     if (DECL_NAME(decl)) {
@@ -2117,9 +2152,9 @@ void TreeToLLVM::CreateExceptionValues() {
                                    NULL);
 
   FuncUnwindResume =
-    TheModule->getOrInsertFunction((USING_SJLJ_EXCEPTIONS ? 
+    TheModule->getOrInsertFunction(USING_SJLJ_EXCEPTIONS ?
                                     "_Unwind_SjLj_Resume" :
-                                    "_Unwind_Resume"),
+                                    "_Unwind_Resume",
                                    Type::getPrimitiveType(Type::VoidTyID),
                                    PointerType::get(Type::Int8Ty),
                                    NULL);
@@ -3158,8 +3193,17 @@ Value *TreeToLLVM::EmitVIEW_CONVERT_EXPR(tree exp, Value *DestLoc) {
 }
 
 Value *TreeToLLVM::EmitNEGATE_EXPR(tree exp, Value *DestLoc) {
-  if (!DestLoc)
-    return Builder.CreateNeg(Emit(TREE_OPERAND(exp, 0), 0), "tmp");
+  if (!DestLoc) {
+    Value *V = Emit(TREE_OPERAND(exp, 0), 0);
+    if (!isa<PointerType>(V->getType()))
+      return Builder.CreateNeg(V, "tmp");
+    
+    // GCC allows NEGATE_EXPR on pointers as well.  Cast to int, negate, cast
+    // back.
+    V = CastToAnyType(V, false, TD.getIntPtrType(), false);
+    V = Builder.CreateNeg(V, "tmp");
+    return CastToType(Instruction::IntToPtr, V, ConvertType(TREE_TYPE(exp)));
+  }
   
   // Emit the operand to a temporary.
   const Type *ComplexTy=cast<PointerType>(DestLoc->getType())->getElementType();
@@ -3200,7 +3244,7 @@ Value *TreeToLLVM::EmitABS_EXPR(tree exp) {
     return Builder.CreateSelect(Cmp, Op, OpN, "abs");
   } else {
     // Turn FP abs into fabs/fabsf.
-    return EmitBuiltinUnaryFPOp(Op, "fabsf", "fabs");
+    return EmitBuiltinUnaryFPOp(Op, "fabsf", "fabs", "fabsl");
   }
 }
 
@@ -4332,9 +4376,10 @@ bool TreeToLLVM::EmitBuiltinCall(tree exp, tree fndecl,
       Result = Builder.CreateIntCast(Result, DestTy, "cast");
     return true;
   }
+  case BUILT_IN_SQRTL:
+    return false;   // treat long double as normal call
   case BUILT_IN_SQRT: 
   case BUILT_IN_SQRTF:
-  case BUILT_IN_SQRTL:
     // If errno math has been disabled, expand these to llvm.sqrt calls.
     if (!flag_errno_math) {
       Value *Amt = Emit(TREE_VALUE(TREE_OPERAND(exp, 1)), 0);
@@ -4343,9 +4388,10 @@ bool TreeToLLVM::EmitBuiltinCall(tree exp, tree fndecl,
       return true; 
     }
     break;
+  case BUILT_IN_POWIL:
+    return false;   // treat long double as normal call
   case BUILT_IN_POWI:
   case BUILT_IN_POWIF:
-  case BUILT_IN_POWIL:
     Result = EmitBuiltinPOWI(exp);
     return true;
   case BUILT_IN_FFS:  // These GCC builtins always return int.
@@ -4365,7 +4411,36 @@ bool TreeToLLVM::EmitBuiltinCall(tree exp, tree fndecl,
     return true;
   }
 
-
+  // Convert annotation built-in to llvm.annotation intrinsic.
+  case BUILT_IN_ANNOTATION: {
+      
+    // Get file and line number
+    location_t locus = EXPR_LOCATION (exp);
+    Constant *lineNo = ConstantInt::get(Type::Int32Ty, locus.line);
+    Constant *file = ConvertMetadataStringToGV(locus.file);
+    const Type *SBP= PointerType::get(Type::Int8Ty);
+    file = ConstantExpr::getBitCast(file, SBP);
+    
+    // Get arguments.
+    tree arglist = TREE_OPERAND(exp, 1);
+    Value *ExprVal = Emit(TREE_VALUE(arglist), 0);
+    const Type *Ty = ExprVal->getType();
+    Value *StrVal = Emit(TREE_VALUE(TREE_CHAIN(arglist)), 0);
+    
+    SmallVector<Value *, 4> Args;
+    Args.push_back(ExprVal);
+    Args.push_back(StrVal);
+    Args.push_back(file);
+    Args.push_back(lineNo);
+    
+    assert(Ty && "llvm.annotation arg type may not be null");
+    Result = Builder.CreateCall(Intrinsic::getDeclaration(TheModule, 
+                                                          Intrinsic::annotation, 
+                                                          &Ty, 
+                                                          1),
+                                Args.begin(), Args.end());
+    return true;
+  }
 #undef HANDLE_UNARY_FP
 
 #if 1  // FIXME: Should handle these GCC extensions eventually.
@@ -4407,13 +4482,17 @@ bool TreeToLLVM::EmitBuiltinUnaryIntOp(Value *InVal, Value *&Result,
 }
 
 Value *TreeToLLVM::EmitBuiltinUnaryFPOp(Value *Amt, const char *F32Name,
-                                        const char *F64Name) {
+                                        const char *F64Name, 
+                                        const char *LongDoubleName) {
   const char *Name = 0;
   
   switch (Amt->getType()->getTypeID()) {
   default: assert(0 && "Unknown FP type!");
   case Type::FloatTyID:  Name = F32Name; break;
   case Type::DoubleTyID: Name = F64Name; break;
+  case Type::X86_FP80TyID:
+  case Type::PPC_FP128TyID:
+  case Type::FP128TyID: Name = LongDoubleName; break;
   }
   
   return Builder.CreateCall(cast<Function>(
@@ -5571,31 +5650,46 @@ Constant *TreeConstantToLLVM::ConvertREAL_CST(tree exp) {
     int UArr[2];
     double V;
   };
-  REAL_VALUE_TO_TARGET_DOUBLE(TREE_REAL_CST(exp), RealArr);
-  
-  // Here's how this works:
-  // REAL_VALUE_TO_TARGET_DOUBLE() will generate the floating point number
-  //  as an array of integers in the hosts's representation.  Each integer
-  // in the array will hold 32 bits of the result REGARDLESS OF THE HOST'S
-  //  INTEGER SIZE.
-  //
-  // This, then, makes the conversion pretty simple.  The tricky part is
-  // getting the byte ordering correct and make sure you don't print any
-  // more than 32 bits per integer on platforms with ints > 32 bits.
-  //
-  bool HostBigEndian = false;
-#ifdef HOST_WORDS_BIG_ENDIAN
-  HostBigEndian = true;
-#endif
-  
-  UArr[0] = RealArr[0];   // Long -> int convert
-  UArr[1] = RealArr[1];
+  if (Ty==Type::FloatTy || Ty==Type::DoubleTy) {
+    REAL_VALUE_TO_TARGET_DOUBLE(TREE_REAL_CST(exp), RealArr);
 
-  if (WORDS_BIG_ENDIAN != HostBigEndian)
-    std::swap(UArr[0], UArr[1]);
-  
-  return ConstantFP::get(Ty, Ty==Type::FloatTy ? APFloat((float)V)
-                                               : APFloat(V));
+    // Here's how this works:
+    // REAL_VALUE_TO_TARGET_DOUBLE() will generate the floating point number
+    //  as an array of integers in the hosts's representation.  Each integer
+    // in the array will hold 32 bits of the result REGARDLESS OF THE HOST'S
+    //  INTEGER SIZE.
+    //
+    // This, then, makes the conversion pretty simple.  The tricky part is
+    // getting the byte ordering correct and make sure you don't print any
+    // more than 32 bits per integer on platforms with ints > 32 bits.
+    //
+    bool HostBigEndian = false;
+#ifdef HOST_WORDS_BIG_ENDIAN
+    HostBigEndian = true;
+#endif
+
+    UArr[0] = RealArr[0];   // Long -> int convert
+    UArr[1] = RealArr[1];
+
+    if (WORDS_BIG_ENDIAN != HostBigEndian)
+      std::swap(UArr[0], UArr[1]);
+
+    return ConstantFP::get(Ty, Ty==Type::FloatTy ? APFloat((float)V)
+                                                 : APFloat(V));
+  } else if (Ty==Type::X86_FP80Ty) {
+    long RealArr[4];
+    uint64_t UArr[2];
+    REAL_VALUE_TO_TARGET_LONG_DOUBLE(TREE_REAL_CST(exp), RealArr);
+
+    UArr[0] = ((uint64_t)((uint16_t)RealArr[2]) << 48) |
+              ((uint64_t)((uint32_t)RealArr[1]) << 16) |
+              ((uint64_t)((uint16_t)(RealArr[0] >> 16)));
+    UArr[1] = (uint16_t)RealArr[0];
+
+    return ConstantFP::get(Ty, APFloat(APInt(80, 2, UArr)));
+  }
+  assert(0 && "Floating point type not handled yet");
+  return 0;   // outwit compiler warning
 }
 
 Constant *TreeConstantToLLVM::ConvertVECTOR_CST(tree exp) {
