@@ -26,7 +26,9 @@
 #import <UIKit/UITable.h>
 #import <UIKit/UITableColumn.h>
 #import <UIKit/UITextLabel.h>
+#import <UIKit/UITextView.h>
 #import <UIKit/UITransitionView.h>
+#import <UIKit/UITransformAnimation.h>
 #import <UIKit/UIView.h>
 #import <UIKit/UIView-Animation.h>
 #import <UIKit/UIView-Geometry.h>
