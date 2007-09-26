@@ -6,6 +6,14 @@
 
 #import <Foundation/Foundation.h>
 
+#define kOrientationFlatUp 0
+#define kOrientationVertical 1
+#define kOrientationVerticalUpsideDown 2
+#define kOrientationHorizontalLeft 3
+#define kOrientationHorizontalRight 4
+#define kOrientationUnknown 5
+#define kOrientationFlatDown 6
+
 @interface UIHardware : NSObject
 {
 }
