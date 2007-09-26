@@ -3,7 +3,7 @@
 
 Please note that these instructions are subject to change. Before updating your toolchain installation, you should always check the newest version of this page. You should also check [Portability] to see whether there are any special instructions for your particular platform.
 
-_Please file bug reports to report bugs. Do not leave bugs as comments on this page._
+*FILE BUG REPORTS TO REPORT BUGS! DO NOT LEAVE BUGS AS COMMENTS ON THIS PAGE! THIS MEANS THAT IF THE TOOLCHAIN DOES NOT BUILD FOR YOU, DO NOT LEAVE A COMMENT HERE!*
 
 =HOWTO build the toolchain=
 
