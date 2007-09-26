@@ -27,6 +27,7 @@ CGPoint GSEventGetInnerMostPathPosition(GSEvent *ev);
 CGPoint GSEventGetOuterMostPathPosition(GSEvent *ev);
 unsigned int GSEventGetSubType(GSEvent *ev);
 unsigned int GSEventGetType(GSEvent *ev);
+unsigned int GSEventDeviceOrientation(GSEvent *ev);
 
 #ifdef __cplusplus
 }
