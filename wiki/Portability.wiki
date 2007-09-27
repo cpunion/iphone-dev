@@ -14,6 +14,8 @@ Feel free to add platforms to this list. Make sure you have successfully compile
 export CFLAGS="-m32"
 export LDFLAGS="-m32"
 }}}
+ * Debian 2.6.18 (thanks tim.schuerewegen)
+ * CentOS 4 (thanks gaoxiaojun)
 
 =Supported but untested=
 
