@@ -20,12 +20,12 @@ export LDFLAGS="-m32"
 =Supported but untested=
 
  * Mac OS X 10.5, PPC.
- * Windows XP/MinGW.
 
 =Supported but currently does not build=
 
  * Mac OS X 10.5 Intel: http://code.google.com/p/iphone-dev/issues/detail?id=31
  * Windows XP/Cygwin: http://code.google.com/p/iphone-dev/issues/detail?id=40
+ * Windows XP/MinGW: http://code.google.com/p/iphone-dev/issues/detail?id=62
  
 =Unsupported=
 
