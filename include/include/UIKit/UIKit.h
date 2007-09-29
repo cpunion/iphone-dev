@@ -8,6 +8,7 @@
 
 #import <UIKit/CDStructures.h>
 #import <UIKit/UIAlertSheet.h>
+#import <UIKit/UIAlphaAnimation.h>
 #import <UIKit/UIAnimation.h>
 #import <UIKit/UIAnimator.h>
 #import <UIKit/UIApplication.h>
