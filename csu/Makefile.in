@@ -1,11 +1,23 @@
 VPATH=@srcdir@
 prefix=@prefix@
+CC=@CC@
 
-all:		crt1.o dylib1.o bundle1.o
+all:		crt1.o dylib1.o bundle1.o crt0.o
 
 .PHONY:	install
 
-install:    crt1.o dylib1.o bundle1.o
+crt0.o:	obj/static/crt.o obj/static/arm-start.o
+	$(CC) -r -static $(LDFLAGS) -nostdlib -keep_private_externs -o $@ $^
+
+obj/static/%.o: %.c
+	mkdir -p ./obj/static
+	$(CC) -static $(CFLAGS) -c -o $@ $^ 
+
+obj/static/%.o: %.s
+	mkdir -p ./obj/static
+	$(CC) -static $(CFLAGS) -c -o $@ $^ 
+
+install:    crt1.o dylib1.o bundle1.o crt0.o
 	@INSTALL@ -d $(DESTDIR)$(prefix)/lib
 	@INSTALL@ $^ $(DESTDIR)$(prefix)/lib
 
