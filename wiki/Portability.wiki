@@ -8,6 +8,7 @@ Feel free to add platforms to this list. Make sure you have successfully compile
  * Mac OS X 10.4, Intel. An installed Tiger SDK is automatically detected, so the Xcode DMG is not necessary.
  * Mac OS X 10.4, PPC. The Xcode DMG is not necessary here either.
  * Ubuntu Feisty Fawn, Intel.
+ * Ubuntu Gusty Gibbon, Intel.
  * Fedora Core, Intel.
  * Gentoo Linux 2007.0, x86_64. On 64-bit architectures there are currently compilation and linking problems with structs; as a workaround, try the following:
 {{{
