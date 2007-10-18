@@ -15,9 +15,9 @@ $ flex --version
 flex version 2.5.4
 }}}
 
- * Check out a copy of LLVM _SVN_, and build a _release_ build (as opposed to a debug one).
+ * Check out a copy of LLVM _SVN_, and build a _release_ build (as opposed to a debug one). Currently, due to Issue 70, we are limited to revision 42498.
 {{{
-$ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm-svn
+$ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm-svn -r 42498
 $ pushd llvm-svn
 $ ./configure --enable-optimized
 $ make ENABLE_OPTIMIZED=1
