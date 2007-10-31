@@ -69,12 +69,14 @@ $ sudo make install
 $ popd
 }}}
 
- * *Only* if you are compiling on *leopard* 10.5. This is an ugly workaround, and you will need to use "arm-apple-darwin-gcc -mmacosx-version-min=10.1" to compile with the resulting toolchain. 
+ * *Only* if you are compiling on *leopard* 10.5. This is an ugly workaround and compiling with the resulting toolchain will give you a warning.
 {{{
 $ mv llvm-gcc-4.0-iphone/configure llvm-gcc-4.0-iphone/configure.old
 $ sed 's/^FLAGS_FOR_TARGET=$/FLAGS_FOR_TARGET=${FLAGS_FOR_TARGET-}/g' \ 
 llvm-gcc-4.0-iphone/configure.old > llvm-gcc-4.0-iphone/configure
 $ export FLAGS_FOR_TARGET="-mmacosx-version-min=10.1"
+$ sudo ln -s /usr/local/arm-apple-darwin/lib/crt1.o \
+/usr/local/arm-apple-darwin/lib/crt1.10.5.o
 }}}
 
  * Configure and make LLVM-GCC. Make sure that `$LLVMOBJDIR` and `$HEAVENLY` are set per the instructions above.
