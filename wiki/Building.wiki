@@ -69,6 +69,14 @@ $ sudo make install
 $ popd
 }}}
 
+ * If you are compiling on leopard 10.5.
+{{{
+$ mv llvm-gcc-4.0-iphone/configure llvm-gcc-4.0-iphone/configure.old
+$ sed 's/^FLAGS_FOR_TARGET=$/FLAGS_FOR_TARGET=${FLAGS_FOR_TARGET-}/g' \ 
+llvm-gcc-4.0-iphone/configure.old > llvm-gcc-4.0-iphone/configure
+$ export FLAGS_FOR_TARGET="-mmacosx-version-min=10.1"
+}}}
+
  * Configure and make LLVM-GCC. Make sure that `$LLVMOBJDIR` and `$HEAVENLY` are set per the instructions above.
 {{{
 $ mkdir -p build/llvm-gcc-4.0-iphone
