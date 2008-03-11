@@ -86,7 +86,7 @@ $ pushd build/llvm-gcc-4.0-iphone
 $ ../../llvm-gcc-4.0-iphone/configure --enable-llvm=`llvm-config --obj-root` \
 --enable-languages=c,c++,objc,obj-c++ --target=arm-apple-darwin --enable-sjlj-exceptions \
 --with-heavenly=$HEAVENLY --with-as=/usr/local/bin/arm-apple-darwin-as \
---with-ld=/usr/local/bin/arm-apple-darwin-ld
+--with-ld=/usr/local/bin/arm-apple-darwin-ld --enable-wchar_t=no
 $ make LLVM_VERSION_INFO=2.0-svn-iphone-dev-0.3-svn 
 $ sudo make install
 $ popd
