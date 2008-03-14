@@ -18,7 +18,7 @@ SHLIB_LC = -lc
 # uses the stub versions named by $(LIBGCC).
 # APPLE LOCAL begin no-libtool
 SHLIB_LINK = $(GCC_FOR_TARGET) $(LIBGCC2_CFLAGS) -dynamiclib -nodefaultlibs \
-	-install_name $(slibdir)/$(SHLIB_INSTALL_NAME) \
+	-install_name /usr/lib/$(SHLIB_INSTALL_NAME) \
 	-single_module -o $(SHLIB_DIR)/$(SHLIB_SONAME).tmp \
 	-Wl,-exported_symbols_list,$(SHLIB_MAP) \
 	$(SHLIB_VERSTRING) \
@@ -58,9 +58,8 @@ libgcc_s.%.dylib : $(SHLIB_VERPFX).%.ver stmp-multilib
 	MLIBS=`$(GCC_FOR_TARGET) --print-multi-lib \
 		| sed -e 's/;.*$$//' -e '/^\.$$/d'` ; \
 	for mlib in '' $$MLIBS ; do \
-	  $(STRIP_FOR_TARGET) -o $(@)_T$${mlib} \
-	    -s $(SHLIB_VERPFX).$(*).ver -c -u \
-	    ./$${mlib}/libgcc_s.$(SHLIB_SOVERSION)$(SHLIB_EXT).tmp || exit 1 ; \
+	  cp ./$${mlib}/libgcc_s.$(SHLIB_SOVERSION)$(SHLIB_EXT).tmp \
+            $(@)_T$${mlib} || exit 1 ; \
 	done
 	$(LIPO_FOR_TARGET) -output $@ -create $(@)_T*
 	rm $(@)_T*
