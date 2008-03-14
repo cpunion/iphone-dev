@@ -12882,7 +12882,11 @@ objc_finish_message_expr (tree receiver, tree sel_name, tree method_params)
   /* APPLE LOCAL ObjC new abi */
   /* Code moved down */
   /* APPLE LOCAL begin ObjC new abi */
+#ifdef TARGET_ARM
+  if (false)
+#else
   if (flag_objc_abi == 2)
+#endif
     {
       tree ret_type;
       tree message_func_decl;
