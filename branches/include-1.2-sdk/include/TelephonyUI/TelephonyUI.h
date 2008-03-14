@@ -1,0 +1,21 @@
+// Dependencies
+#import <Foundation/Foundation.h>
+#import <UIKIt/UIKit.h>
+
+// TelephonyUI
+#import <TelephonyUI/TPBottomBar.h>
+#import <TelephonyUI/TPBottomButtonBar.h>
+#import <TelephonyUI/TPBottomDualButtonBar.h>
+#import <TelephonyUI/TPBottomLockBar.h>
+#import <TelephonyUI/TPCallWaitingButton.h>
+#import <TelephonyUI/TPLCDSubImageView.h>
+#import <TelephonyUI/TPLCDTextView-SyntheticEvents.h>
+#import <TelephonyUI/TPLCDTextView.h>
+#import <TelephonyUI/TPLCDTextViewScrollingView.h>
+#import <TelephonyUI/TPLCDView.h>
+#import <TelephonyUI/TPLockKnobView.h>
+#import <TelephonyUI/TPLockTextView.h>
+#import <TelephonyUI/TPPhonePad-SyntheticEvents.h>
+#import <TelephonyUI/TPPhonePad.h>
+#import <TelephonyUI/TPPushButton.h>
+#import <TelephonyUI/TPTopLockBar.h>
