@@ -53,7 +53,8 @@ extern NSString *UITextFieldTextDidEndEditingNotification;
 extern NSString *UITextFieldTextDidChangeNotification;
 
 int UIApplicationMain(int argc, char **argv, id Class);
-CGContextRef UICurrentContext();
+#define UICurrentContext UIGraphicsGetCurrentContext
+//CGContextRef UICurrentContext();
 struct CGAffineTransform UIIntegralTransform();
 
 #ifdef __cplusplus
