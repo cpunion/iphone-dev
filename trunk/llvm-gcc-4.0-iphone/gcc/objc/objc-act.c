@@ -4290,7 +4290,13 @@ synth_module_prologue (void)
 						 NULL, NULL_TREE);
 
       /* APPLE LOCAL begin ObjC new abi */
+#ifdef TARGET_ARM
+      if (true)
+          objc_v2_selector_type = objc_selector_type;
+      else
+#else
       if (flag_objc_abi == 2)
+#endif
 	{
           /* APPLE LOCAL radar 4699834 */
  	  /* Removed _rtp suffix from objc_msgSend_fixup_rtp and variants */
