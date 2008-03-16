@@ -75,6 +75,7 @@
 - (id)initWithContentRect:(struct CGRect)fp8;	// IMP=0x323beedc
 - (float)level;	// IMP=0x323c0be4
 - (void)makeKey:(id)fp8;	// IMP=0x323bf8ac
+- (void)makeKeyAndVisible;
 - (id)nextResponder;	// IMP=0x323c0ab4
 - (void)orderFront:(id)fp8;	// IMP=0x323bf4bc
 - (void)orderOut:(id)fp8;	// IMP=0x323bf87c

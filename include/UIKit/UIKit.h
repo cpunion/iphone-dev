@@ -52,9 +52,18 @@ extern NSString *UITextFieldTextDidBeginEditingNotification;
 extern NSString *UITextFieldTextDidEndEditingNotification;
 extern NSString *UITextFieldTextDidChangeNotification;
 
-int UIApplicationMain(int argc, char **argv, id Class);
+/* Updated for FW v1.2 */
+
+#define UIApplicationMain(A, B, C) { \
+    UIApplicationMain(A, B, \ 
+        [ NSString stringWithCString: class_getName(C) ], \
+        [ NSString stringWithCString: class_getName(C) ])  \
+  }
+
+
+/* Updated for FW v1.2 */
 #define UICurrentContext UIGraphicsGetCurrentContext
-//CGContextRef UICurrentContext();
+
 struct CGAffineTransform UIIntegralTransform();
 
 #ifdef __cplusplus

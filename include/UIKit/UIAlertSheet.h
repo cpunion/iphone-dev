@@ -12,6 +12,6 @@
 #import <UIKit/UITable.h>
 #import <UIKit/UITextLabel.h>
 #import <UIKit/UIWindow.h>
-#import <UIKit/UIModalView.h>
+#import <UIKit/UIActionSheet.h>
 
-#define UIAlertSheet UIModalView
+#define UIAlertSheet UIActionSheet

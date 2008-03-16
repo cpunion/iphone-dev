@@ -54,7 +54,7 @@
 - (id)initWithImageRef:(struct CGImage *)fp8 orientation:(int)fp12;	// IMP=0x323bbf38
 - (int)orientation;	// IMP=0x323bc0f0
 - (struct CGColor *)patternColor;	// IMP=0x323bd034
-- (void)setOrientation:(int)fp8;	// IMP=0x323bc100
+// GONE: - (void)setOrientation:(int)fp8;	// IMP=0x323bc100
 - (struct CGSize)size;	// IMP=0x323bd2b8
 
 @end
