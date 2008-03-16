@@ -15,8 +15,9 @@ struct __GSEvent;
 typedef struct __GSEvent GSEvent;
 typedef GSEvent *GSEventRef;
 
-struct CGPoint;
-typedef struct CGPoint CGPoint;
+#import "CoreGraphics/CGGeometry.h"
+//struct CGPoint;
+//typedef struct CGPoint CGPoint;
 
 int GSEventIsChordingHandEvent(GSEvent *ev);
 int GSEventGetClickCount(GSEvent *ev);
