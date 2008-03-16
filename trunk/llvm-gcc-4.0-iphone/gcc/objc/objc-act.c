@@ -742,6 +742,11 @@ objc_init (void)
       TAG_GETCLASS = "objc_getClass";
       TAG_GETMETACLASS = "objc_getMetaClass";
       TAG_MSGSEND = "objc_msgSend";
+#ifdef TARGET_ARM
+      if (flag_objc_abi == 2)
+        TAG_MSGSENDSUPER = "objc_msgSendSuper2";
+      else
+#endif
       TAG_MSGSENDSUPER = "objc_msgSendSuper";
       TAG_MSGSEND_STRET = "objc_msgSend_stret";
       TAG_MSGSENDSUPER_STRET = "objc_msgSendSuper_stret";
@@ -4291,9 +4296,10 @@ synth_module_prologue (void)
 
       /* APPLE LOCAL begin ObjC new abi */
 #ifdef TARGET_ARM
-      if (true)
+      if (true) {
           objc_v2_selector_type = objc_selector_type;
-      else
+          objc_v2_super_selector_type = objc_selector_type;
+      } else
 #else
       if (flag_objc_abi == 2)
 #endif
