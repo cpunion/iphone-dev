@@ -50,6 +50,9 @@
 
 - (LKTimingFunction *)timingFunction;
 - (void)setTimingFunction:(LKTimingFunction *)timingFunction;
+- (void)setTransitionFlags:(int)fp8;
+- (void)setType:(id)fp8;
+- (void)setSubtype:(id)fp8;
 
 @end
 

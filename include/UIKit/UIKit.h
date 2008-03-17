@@ -55,13 +55,14 @@ extern NSString *UITextFieldTextDidChangeNotification;
 /* Updated for FW v1.2 */
 
 #define UIApplicationMain(A, B, C) { \
-    UIApplicationMain(A, B, \ 
-        [ NSString stringWithCString: class_getName(C) ], \
-        [ NSString stringWithCString: class_getName(C) ])  \
+    UIApplicationMain(A, B, \
+        [ NSString stringWithCString: (char *) class_getName(C) ], \
+        [ NSString stringWithCString: (char *) class_getName(C) ])  \
   }
 
 
 /* Updated for FW v1.2 */
+CGContextRef UIGraphicsGetCurrentContext();
 #define UICurrentContext UIGraphicsGetCurrentContext
 
 struct CGAffineTransform UIIntegralTransform();
