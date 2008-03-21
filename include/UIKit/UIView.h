@@ -10,13 +10,14 @@
 
 @interface UIView : UIResponder
 {
-    LKLayer *_layer;
-    UIViewTapInfo *_tapInfo;
-    UIGestureInfo *_gestureInfo;
-    float _charge;
-    int _tag;
+    LKLayer         *_layer;
+    UIViewTapInfo   *_tapInfo;
+    UIGestureInfo   *_gestureInfo; 
+    void            *_touchData;
+    float           _charge;
+    int             _tag;
     struct {
-        unsigned int disabled:1;
+        unsigned int userInteractionDisabled:1;
         unsigned int implementsDrawRect:1;
         unsigned int implementsDidScroll:1;
         unsigned int implementsMouseTracking:1;
@@ -37,10 +38,11 @@
         unsigned int dontAnimate:1;
         unsigned int superLayerIsView:1;
         unsigned int layerKitPatternDrawing:1;
-        unsigned int inRenderTree:1;
         unsigned int coreSurfaceImage:1;
+        unsigned int multipleTouchEnabled:1;
         unsigned int reserved:4;
     } _viewFlags;
+
 }
 
 + (Class)layerClass;	// IMP=0x323c3874
@@ -62,6 +64,7 @@
 - (void)stopHeartbeat:(SEL)fp8;	// IMP=0x323c4018
 - (int)swipe:(int)fp8 withEvent:(struct __GSEvent *)fp12;	// IMP=0x323c4068
 - (id)tapDelegate;	// IMP=0x323c3f84
+- (void)setUserInteractionEnabled:(BOOL)fp8;
 
 @end
 
