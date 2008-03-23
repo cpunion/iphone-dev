@@ -65,6 +65,8 @@
 - (int)swipe:(int)fp8 withEvent:(struct __GSEvent *)fp12;	// IMP=0x323c4068
 - (id)tapDelegate;	// IMP=0x323c3f84
 - (void)setUserInteractionEnabled:(BOOL)fp8;
+- (void)setEnabled:(BOOL)fp8;
+- (void)setGestureDelegate:(id)fp8;
 
 @end
 
