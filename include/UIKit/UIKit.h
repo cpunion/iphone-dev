@@ -54,10 +54,12 @@ extern NSString *UITextFieldTextDidChangeNotification;
 
 /* Updated for FW v1.2 */
 
+#ifdef COMPAT_UIAPPLICATIONMAIN
 #define UIApplicationMain(A, B, C) \
     UIApplicationMain(A, B, \
         [ NSString stringWithCString: (char *) class_getName(C) ], \
         [ NSString stringWithCString: (char *) class_getName(C) ])
+#endif
 
 
 /* Updated for FW v1.2 */
