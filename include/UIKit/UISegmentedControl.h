@@ -40,14 +40,18 @@
 - (int)numberOfSegments;	// IMP=0x3240f938
 - (void)removeAllSegments;	// IMP=0x3240f648
 - (void)removeSegment:(int)fp8 animated:(BOOL)fp12;	// IMP=0x32410a64
+- (void)removeSegmentAtIndex:(int)fp8 animated:(BOOL)fp12;     // IMP=0x32410a64
 - (void)selectSegment:(int)fp8;	// IMP=0x3240f984
 - (int)selectedSegment;	// IMP=0x3240f96c
+- (int)selectedSegmentIndex;
 - (void)setDelegate:(id)fp8;	// IMP=0x3240f484
 - (void)setEnabled:(BOOL)fp8 forSegment:(int)fp12;	// IMP=0x3240f8a0
 - (void)setFrame:(struct CGRect)fp8;	// IMP=0x3240fbc0
 - (void)setImage:(id)fp8 forSegment:(int)fp12;	// IMP=0x3240f73c
+- (void)setImage:(id)fp8 forSegmentAtIndex:(int)fp12;  // IMP=0x3240f73c
 - (void)setImagePadding:(struct CGSize)fp8 forSegment:(int)fp16;	// IMP=0x3240f7a4
 - (void)setMomentaryClick:(BOOL)fp8;	// IMP=0x3240f5d8
+- (void)setMomentary:(BOOL)fp8;
 - (void)setSelectedSegment:(int)fp8;	// IMP=0x324101ec
 - (void)setShowsDisclosure:(BOOL)fp8;	// IMP=0x3240f500
 - (void)setTitle:(id)fp8 forSegment:(int)fp12;	// IMP=0x3240f6d4
