@@ -154,5 +154,6 @@
 - (id)sublayerEnumerator;
 - (double)timeOffset;
 - (void)setEdgeAntialiasingMask:(int)mask;
+- (void)setMagnificationFilter:(id)fp8;
 
 @end
