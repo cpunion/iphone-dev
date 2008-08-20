@@ -27,5 +27,5 @@ typedef struct CATransform {
 
 extern CATransform CATransformIdentity;
 
-CATransform CATransformRotate(CATransform transform, float radians, float x, float y, float z);
-CATransform CATransformMakeRotation(float radians, float x, float y, float z);
+CATransform CATransform3DRotate(CATransform transform, float radians, float x, float y, float z);
+CATransform CATransform3DMakeRotation(float radians, float x, float y, float z);
