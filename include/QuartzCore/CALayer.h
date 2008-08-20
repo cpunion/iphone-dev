@@ -153,5 +153,6 @@
 - (float)speed;
 - (id)sublayerEnumerator;
 - (double)timeOffset;
+- (void)setEdgeAntialiasingMask:(int)mask;
 
 @end
