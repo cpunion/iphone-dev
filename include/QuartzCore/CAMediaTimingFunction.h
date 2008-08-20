@@ -6,7 +6,7 @@
 
 #import <Foundation/NSObject.h>
 
-@interface CATimingFunction : NSObject <NSCoding> {}
+@interface CAMediaTimingFunction : NSObject <NSCoding> {}
 
 + (id)functionWithControlPoints:(float)fp8:(float)fp12:(float)fp16:(float)fp20;	
 + (id)functionWithName:(id)fp8;

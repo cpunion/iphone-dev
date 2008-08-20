@@ -5,7 +5,7 @@
  */
 
 #import <Foundation/NSObject.h>
-#import <QuartzCore/CATimingFunction.h>
+#import <QuartzCore/CAMediaTimingFunction.h>
 
 @interface CAAnimation : NSObject <NSCopying> {}
 
@@ -48,8 +48,8 @@
 - (double)timeOffset;
 - (void)setTimeOffset:(double)timeOffset;
 
-- (CATimingFunction *)timingFunction;
-- (void)setTimingFunction:(CATimingFunction *)timingFunction;
+- (CAMediaTimingFunction *)timingFunction;
+- (void)setTimingFunction:(CAMediaTimingFunction *)timingFunction;
 - (void)setTransitionFlags:(int)fp8;
 - (void)setType:(id)fp8;
 - (void)setSubtype:(id)fp8;

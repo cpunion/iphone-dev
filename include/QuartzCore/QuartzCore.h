@@ -14,7 +14,7 @@
 #import <QuartzCore/CAScrollLayer.h>
 #import <QuartzCore/CASlotProxy.h>
 #import <QuartzCore/CASublayerEnumerator.h>
-#import <QuartzCore/CATimingFunction.h>
+#import <QuartzCore/CAMediaTimingFunction.h>
 #import <QuartzCore/CATransaction.h>
 #import <QuartzCore/CATransform.h>
 #import <QuartzCore/CATransition.h>
@@ -31,6 +31,5 @@ extern CFStringRef kCATransactionDisableActions;
 #define kCALayerBottomEdge 4
 #define kCALayerTopEdge 8
 #endif
-
 
 #endif
