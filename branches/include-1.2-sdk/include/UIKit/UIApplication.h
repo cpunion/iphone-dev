@@ -169,6 +169,7 @@
 - (void)setProximitySensorEnabled:(BOOL)fp8;	// IMP=0x323b5954
 - (void)setReceivesMemoryWarnings:(BOOL)fp8;	// IMP=0x323b5c6c
 - (void)setStatusBarCustomText:(id)fp8;	// IMP=0x323b4d80
+- (void)setStatusBarHidden:(BOOL)fp8;
 - (void)setStatusBarMode:(int)fp8 duration:(float)fp12;	// IMP=0x323b4d48
 - (void)setStatusBarMode:(int)fp8 orientation:(int)fp12 duration:(float)fp16;	// IMP=0x323b4d14
 - (void)setStatusBarMode:(int)fp8 orientation:(int)fp12 duration:(float)fp16 fenceID:(int)fp20;	// IMP=0x323b4ccc

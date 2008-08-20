@@ -6,13 +6,13 @@
 
 #import <UIKit/UIView.h>
 
-@class LKContext, UIFingerInfo, UIResponder;
+@class CAContext, UIFingerInfo, UIResponder;
 
 @interface UIWindow : UIView
 {
     struct __GSWindow *_window;
     float _windowLevel;
-    LKContext *_layerContext;
+    CAContext *_layerContext;
     UIView *_lastMouseDownView;
     UIView *_lastMouseEnteredView;
     UIResponder *_firstResponder;

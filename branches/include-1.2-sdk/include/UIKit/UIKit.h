@@ -37,7 +37,7 @@
 #import <UIKit/UIView-Gestures.h>
 #import <UIKit/UIView-Hierarchy.h>
 #import <UIKit/UIView-Internal.h>
-#import <UIKit/UIView-LKLayerDelegate.h>
+#import <UIKit/UIView-CALayerDelegate.h>
 #import <UIKit/UIView-Rendering.h>
 #import <UIKit/UIWindow.h>
 #import <UIKit/WebCaretChangeListenerProtocol.h>
@@ -52,14 +52,14 @@ extern NSString *UITextFieldTextDidBeginEditingNotification;
 extern NSString *UITextFieldTextDidEndEditingNotification;
 extern NSString *UITextFieldTextDidChangeNotification;
 
+//#define { setBackgroundColor: A } { setBackgroundColor: [ [ UIColor alloc ] initWithCGColor: A ] } 
+
+#define CGColorCreate(A, B) [ [ UIColor alloc ] initWithCGColor: CGColorCreate(A, B) ] 
+
 /* Updated for FW v1.2 */
 
-#ifdef COMPAT_UIAPPLICATIONMAIN
-#define UIApplicationMain(A, B, C) \
-    UIApplicationMain(A, B, \
-        [ NSString stringWithCString: (char *) class_getName(C) ], \
-        [ NSString stringWithCString: (char *) class_getName(C) ])
-#endif
+void UIApplicationUseLegacyEvents(int);
+int UIApplicationMain(int argc, char *argv[], NSString *principalClassName, NSString *delegateClassName);
 
 
 /* Updated for FW v1.2 */

@@ -6,11 +6,11 @@
 
 #import <UIKit/UITiledView.h>
 
-#import "UIKeyboardInputProtocol.h"
+//#import "UIKeyboardInputProtocol.h"
 
-@class DOMHTMLElement, DOMNode, DOMNode<UIFormControl>, NSTimer, UIAutoscrollTimer, UIInformalDelegate, UITextLoupe, UITextTraits, UITextView, UIView, WebPDFView, WebView;
+@class DOMHTMLElement, DOMNode, DOMNode/*<UIFormControl>*/, NSTimer, UIAutoscrollTimer, UIInformalDelegate, UITextLoupe, UITextTraits, UITextView, UIView, WebPDFView, WebView;
 
-@interface UIWebView : UITiledView <UIKeyboardInput>
+@interface UIWebView : UITiledView /*<UIKeyboardInput>*/
 {
     struct WKWindow *_window;
     WebView *_webView;
@@ -40,7 +40,7 @@
         char isTransitioning;
         char zoomsFocusedFormControl;
         struct CGRect cachedBoundingBox;
-        DOMNode<UIFormControl> *element;
+        DOMNode/*<UIFormControl>*/ *element;
         UIInformalDelegate *delegate;
     } _forms;
     struct {
