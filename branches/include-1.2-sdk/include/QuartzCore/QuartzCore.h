@@ -25,4 +25,12 @@ void CAPurpleServerStart();
 
 extern CFStringRef kCATransactionDisableActions;
 
+#ifndef kCALayerLeftEdge
+#define kCALayerLeftEdge 1
+#define kCALayerRightEdge 2
+#define kCALayerBottomEdge 4
+#define kCALayerTopEdge 8
+#endif
+
+
 #endif
