@@ -7,6 +7,7 @@
 #import <UIKit/UIView.h>
 
 @class NSString;
+@class UIColor;
 
 @interface UITextLabel : UIView
 {
@@ -42,7 +43,7 @@
 - (id)initWithFrame:(struct CGRect)fp8;	// IMP=0x3245d3f8
 - (BOOL)isHighlighted;	// IMP=0x3245df3c
 - (void)setCentersHorizontally:(BOOL)fp8;	// IMP=0x3245dc54
-- (void)setColor:(struct CGColor *)fp8;	// IMP=0x3245dadc
+- (void)setColor: (UIColor *)fp8;	// IMP=0x3245dadc
 - (void)setEllipsisStyle:(int)fp8;	// IMP=0x3245df4c
 - (void)setEnabled:(BOOL)fp8;	// IMP=0x3245da58
 - (void)setFont:(struct __GSFont *)fp8;	// IMP=0x3245ddc0

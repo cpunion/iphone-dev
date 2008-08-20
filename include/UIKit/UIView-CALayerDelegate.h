@@ -6,7 +6,7 @@
 
 #import <UIKit/UIView.h>
 
-@interface UIView (LKLayerDelegate)
+@interface UIView (CALayerDelegate)
 - (void)_layoutSublayersOfLayer:(id)fp8;	// IMP=0x323c7000
 - (id)actionForLayer:(id)fp8 forKey:(id)fp12;	// IMP=0x323c83cc
 - (void)drawLayer:(id)fp8 inContext:(struct CGContext *)fp12;	// IMP=0x323c822c

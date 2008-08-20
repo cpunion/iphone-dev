@@ -22,7 +22,7 @@
 - (void)drawRect:(struct CGRect)fp8;	// IMP=0x3246c8b0
 - (id)hitTest:(struct CGPoint)fp8 forEvent:(struct __GSEvent *)fp16;	// IMP=0x3246cab0
 - (id)initWithFrame:(struct CGRect)fp8;	// IMP=0x3246c378
-- (void)setColor:(struct CGColor *)fp8;	// IMP=0x3246c400
+- (void)setColor:UIColor *fp8;	// IMP=0x3246c400
 - (void)setCornerRadii:(id)fp8;	// IMP=0x3246c420
 - (void)setCornerRadius:(float)fp8;	// IMP=0x3246c410
 - (void)setFrame:(struct CGRect)fp8;	// IMP=0x3246c828

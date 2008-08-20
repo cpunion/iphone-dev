@@ -4,8 +4,8 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2006 by Steve Nygard.
  */
 
-#import "LKLayer.h"
+#import "CALayer.h"
 
-@interface LKLayer (UIView)
+@interface CALayer (UIView)
 @end
 

@@ -6,11 +6,11 @@
 
 #import <UIKit/UIResponder.h>
 
-@class LKLayer, UIGestureInfo, UIViewTapInfo;
+@class CALayer, UIGestureInfo, UIViewTapInfo;
 
 @interface UIView : UIResponder
 {
-    LKLayer         *_layer;
+    CALayer         *_layer;
     UIViewTapInfo   *_tapInfo;
     UIGestureInfo   *_gestureInfo; 
     void            *_touchData;
