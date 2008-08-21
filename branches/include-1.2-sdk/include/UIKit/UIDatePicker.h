@@ -101,8 +101,8 @@
 - (void)setDatePickerMode:(int)fp8;	// IMP=0x32458e28
 - (void)setDelegate:(id)fp8;	// IMP=0x32459858
 - (void)setHighlightsToday:(BOOL)fp8;	// IMP=0x3245b414
-- (void)setMaxDate:(id)fp8;	// IMP=0x3245891c
-- (void)setMinDate:(id)fp8;	// IMP=0x32458888
+- (void)setMaximumDate:(id)fp8;	// IMP=0x3245891c
+- (void)setMinimumDate:(id)fp8;	// IMP=0x32458888
 - (void)setStaggerTimeIntervals:(BOOL)fp8;	// IMP=0x32458fa4
 - (void)setTimeInterval:(double)fp8;	// IMP=0x3245b4d0
 - (struct CGColor *)shadowColor;	// IMP=0x3245bc64

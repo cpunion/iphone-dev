@@ -43,7 +43,7 @@
 - (id)cellForRow:(int)fp8 column:(int)fp12;	// IMP=0x323af7a0
 - (int)columnForTable:(id)fp8;	// IMP=0x323af8c0
 - (id)createDividerWithFrame:(struct CGRect)fp8;	// IMP=0x323ae41c
-- (id)createTableWithFrame:(struct CGRect)fp8;	// IMP=0x323ae590
+- (id)_createTableWithFrame:(struct CGRect)fp8 forComponent:(id):fp8;	// IMP=0x323ae590
 - (void)dealloc;	// IMP=0x323addec
 - (id)imageForPickerPiece:(int)fp8;	// IMP=0x323adfec
 - (id)initWithFrame:(struct CGRect)fp8;	// IMP=0x323adc58
